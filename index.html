@@ -1013,7 +1013,7 @@
   </div>
 
   <div class="contact-right reveal">
-    <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+    <form class="contact-form" id="contactForm" action="https://formspree.io/hello@monelevagesg.com" method="POST" onsubmit="handleSubmit(event)">
       <div class="form-row">
         <div class="form-group">
           <label for="name">Name</label>
@@ -1095,20 +1095,45 @@
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
-  // Form submit
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('.submit-btn');
+    const form = e.target;
+    const btn = form.querySelector('.submit-btn');
     const arrow = btn.querySelector('.arrow');
-    btn.style.background = 'var(--green-deep)';
-    btn.childNodes[0].textContent = 'Message sent ';
-    arrow.textContent = '✓';
-    setTimeout(() => {
-      btn.style.background = '';
-      btn.childNodes[0].textContent = 'Send Message ';
-      arrow.textContent = '→';
-      e.target.reset();
-    }, 3500);
+    btn.disabled = true;
+    btn.childNodes[0].textContent = 'Sending… ';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.style.background = 'var(--green-deep)';
+        btn.childNodes[0].textContent = 'Message sent ';
+        arrow.textContent = '✓';
+        form.reset();
+        setTimeout(() => {
+          btn.style.background = '';
+          btn.childNodes[0].textContent = 'Send Message ';
+          arrow.textContent = '→';
+          btn.disabled = false;
+        }, 3500);
+      } else {
+        btn.style.background = 'var(--burgundy-mid)';
+        btn.childNodes[0].textContent = 'Error — try again ';
+        arrow.textContent = '✕';
+        setTimeout(() => {
+          btn.style.background = '';
+          btn.childNodes[0].textContent = 'Send Message ';
+          arrow.textContent = '→';
+          btn.disabled = false;
+        }, 3500);
+      }
+    } catch {
+      btn.childNodes[0].textContent = 'Error — try again ';
+      btn.disabled = false;
+    }
   }
 </script>
 
