@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Demo — Mon Élevage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --burgundy-deep: #4a1b2e;
+      --green:         #2e7d32;
+      --burgundy-mid:  #7a2d44;
+      --rose:          #a84d63;
+      --blush:         #f2e4e8;
+      --green-deep:    #1c4a1e;
+      --black:         #1a1a1a;
+      --gray:          #6b6b6b;
+      --bg:            #0f090c;
+      --border:        rgba(242,228,232,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--blush);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; line-height: 1.05; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      padding: 1.8rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 9, 12, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .nav-wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blush);
+    }
+
+    .nav-logo .accent { color: var(--rose); }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--blush); }
+
+    /* ─── HERO ─── */
+    .page-hero {
+      padding: 12rem 5rem 6rem;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: end;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 2.5rem;
+      height: 1px;
+      background: var(--rose);
+      display: block;
+    }
+
+    .page-title {
+      font-size: clamp(3.5rem, 6vw, 7rem);
+      font-weight: 300;
+      color: var(--blush);
+      margin-bottom: 1.5rem;
+    }
+
+    .page-title em { font-style: italic; color: var(--rose); }
+
+    .page-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gray);
+    }
+
+    .hero-right-text {
+      padding-bottom: 1rem;
+    }
+
+    .what-to-expect {
+      margin-bottom: 2.5rem;
+    }
+
+    .expect-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .expect-label::before {
+      content: '';
+      width: 1.5rem;
+      height: 1px;
+      background: var(--rose);
+      display: block;
+    }
+
+    .expect-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .expect-list li {
+      font-size: 0.9rem;
+      color: var(--gray);
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .expect-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--rose);
+      font-size: 0.8rem;
+    }
+
+    /* ─── FORM SECTION ─── */
+    .form-section {
+      padding: 7rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 8rem;
+      align-items: start;
+    }
+
+    .form-aside {
+      position: sticky;
+      top: 8rem;
+    }
+
+    .aside-heading {
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 300;
+      color: var(--blush);
+      margin-bottom: 1.5rem;
+    }
+
+    .aside-heading em { font-style: italic; color: var(--rose); }
+
+    .aside-body {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: var(--gray);
+      margin-bottom: 2.5rem;
+    }
+
+    .aside-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: rgba(242,228,232,0.4);
+      padding-left: 1.5rem;
+      border-left: 1px solid rgba(168,77,99,0.3);
+      line-height: 1.6;
+    }
+
+    /* Form */
+    .demo-form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .form-group label {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(242,228,232,0.4);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(242,228,232,0.03);
+      border: 1px solid rgba(242,228,232,0.1);
+      border-radius: 0;
+      color: var(--blush);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      padding: 0.9rem 1.1rem;
+      outline: none;
+      transition: border-color 0.3s, background 0.3s;
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(242,228,232,0.2); }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--rose);
+      background: rgba(168,77,99,0.04);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group select option { background: #1a0d14; }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .checkbox-group label {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(242,228,232,0.4);
+      margin-bottom: 0.4rem;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      cursor: pointer;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      border: 1px solid rgba(242,228,232,0.2);
+      background: rgba(242,228,232,0.03);
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .checkbox-item input[type="checkbox"]:checked {
+      background: var(--rose);
+      border-color: var(--rose);
+    }
+
+    .checkbox-item input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 10px;
+      line-height: 1;
+    }
+
+    .checkbox-item span {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    .form-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .submit-btn {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--rose);
+      color: #fff;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, gap 0.3s;
+    }
+
+    .submit-btn .arrow { transition: transform 0.3s; }
+    .submit-btn:hover { background: var(--burgundy-mid); gap: 1.5rem; }
+    .submit-btn:hover .arrow { transform: translateX(4px); }
+
+    .form-footnote {
+      font-size: 0.75rem;
+      color: rgba(242,228,232,0.25);
+      line-height: 1.7;
+    }
+
+    .form-footnote a {
+      color: var(--rose);
+      text-decoration: none;
+      opacity: 0.7;
+    }
+
+    .form-footnote a:hover { opacity: 1; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 3.5rem 5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(242,228,232,0.4);
+    }
+
+    .footer-logo .accent { color: var(--rose); }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(242,228,232,0.25);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--rose); }
+
+    .footer-copy {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(242,228,232,0.2);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s cubic-bezier(0.25,0.46,0.45,0.94),
+                  transform 0.85s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      nav { padding: 1.6rem 2.5rem; }
+      .page-hero { grid-template-columns: 1fr; gap: 3rem; padding: 10rem 2.5rem 5rem; }
+      .form-section { grid-template-columns: 1fr; gap: 4rem; padding: 6rem 2.5rem; }
+      .form-aside { position: static; }
+      footer { padding: 2.5rem; flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 400 400" style="flex-shrink:0">
+      <circle cx="200" cy="200" r="200" fill="#F5F3F0"/>
+      <g transform="translate(200,200)">
+        <path d="M 0 -115 C 0 -115, -58 -51, -58 8 C -58 54, -31 82, 0 82 C 31 82, 58 54, 58 8 C 58 -51, 0 -115 0 -115 Z" fill="none" stroke="#7A2D44" stroke-width="7.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="0" cy="14" r="12.5" fill="#7A2D44"/>
+        <line x1="12.5" y1="14" x2="108" y2="14"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <line x1="108"  y1="14" x2="108" y2="-48" stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="108" cy="-48" r="10" fill="#2E7D32"/>
+        <line x1="-12.5" y1="14" x2="-108" y2="14"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <line x1="-108"  y1="14" x2="-108" y2="78"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="-108" cy="78" r="10" fill="none" stroke="#2E7D32" stroke-width="5"/>
+      </g>
+    </svg>
+    <span class="nav-wordmark">Mon <span class="accent">É</span>levage</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── PAGE HERO ─── -->
+<div class="page-hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Let's Work Together</div>
+    <h1 class="page-title">
+      Request<br>
+      a <em>Demo</em>
+    </h1>
+    <p class="page-subtitle">See what Craft × Code looks like in practice.</p>
+  </div>
+  <div class="hero-right-text reveal">
+    <div class="what-to-expect">
+      <div class="expect-label">What to expect</div>
+      <ul class="expect-list">
+        <li>A 30-minute discovery call tailored to your specific context</li>
+        <li>A walkthrough of how we approach wine program design or digital product builds</li>
+        <li>Honest conversation about whether we're the right fit — no hard sell</li>
+        <li>A follow-up proposal within 48 hours if there's a match</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FORM ─── -->
+<div class="form-section">
+  <div class="form-aside reveal">
+    <h2 class="aside-heading">
+      Tell us<br>
+      <em>what you're</em><br>
+      building
+    </h2>
+    <p class="aside-body">
+      The more context you share, the more useful the conversation. We read every submission personally and respond within 2 business days.
+    </p>
+    <p class="aside-note">
+      "Every great wine program — and every great digital product — starts with the same question: what are you really trying to say?"
+    </p>
+  </div>
+
+  <form class="demo-form" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Full name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="company">Company / Brand</label>
+        <input type="text" id="company" name="company" placeholder="Your organisation">
+      </div>
+      <div class="form-group">
+        <label for="role">Your Role</label>
+        <input type="text" id="role" name="role" placeholder="e.g. Owner, F&B Director">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="service">I'm interested in</label>
+      <select id="service" name="service" required>
+        <option value="" disabled selected>Select a service area</option>
+        <option value="wine-program">Wine Program Consulting</option>
+        <option value="wine-tech">Wine × Tech Product Design</option>
+        <option value="digital-strategy">Digital Strategy & Advisory</option>
+        <option value="not-sure">Not sure yet — let's explore</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="stage">Where are you right now?</label>
+      <select id="stage" name="stage">
+        <option value="" disabled selected>Select your current stage</option>
+        <option value="idea">Just an idea — exploring options</option>
+        <option value="early">Early stage — have a brief or concept</option>
+        <option value="active">Active project — need execution support</option>
+        <option value="existing">Existing business — looking to improve</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="brief">Tell us about your project</label>
+      <textarea id="brief" name="brief" placeholder="What are you trying to build, improve, or solve? The more specific the better." required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="timeline">Ideal timeline</label>
+      <select id="timeline" name="timeline">
+        <option value="" disabled selected>When do you want to get started?</option>
+        <option value="asap">As soon as possible</option>
+        <option value="1month">Within 1 month</option>
+        <option value="3months">Within 3 months</option>
+        <option value="exploring">Just exploring for now</option>
+      </select>
+    </div>
+
+    <div class="form-divider"></div>
+
+    <button type="submit" class="submit-btn">
+      Request Demo <span class="arrow">→</span>
+    </button>
+
+    <p class="form-footnote">
+      By submitting this form, you agree to our <a href="privacy.html">Privacy Policy</a>. We don't share your data with third parties and will only use it to respond to your enquiry.
+    </p>
+  </form>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 400 400" style="opacity:0.45">
+      <circle cx="200" cy="200" r="200" fill="#F5F3F0"/>
+      <g transform="translate(200,200)">
+        <path d="M 0 -115 C 0 -115, -58 -51, -58 8 C -58 54, -31 82, 0 82 C 31 82, 58 54, 58 8 C 58 -51, 0 -115 0 -115 Z" fill="none" stroke="#7A2D44" stroke-width="7.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="0" cy="14" r="12.5" fill="#7A2D44"/>
+        <line x1="12.5" y1="14" x2="108" y2="14"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <line x1="108"  y1="14" x2="108" y2="-48" stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="108" cy="-48" r="10" fill="#2E7D32"/>
+        <line x1="-12.5" y1="14" x2="-108" y2="14"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <line x1="-108"  y1="14" x2="-108" y2="78"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="-108" cy="78" r="10" fill="none" stroke="#2E7D32" stroke-width="5"/>
+      </g>
+    </svg>
+    <span>Mon <span class="accent">É</span>levage</span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="demo.html">Request a Demo</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Mon Élevage. Singapore.</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.submit-btn');
+    const arrow = btn.querySelector('.arrow');
+    btn.style.background = 'var(--green-deep)';
+    btn.childNodes[0].textContent = 'Submitted ';
+    arrow.textContent = '✓';
+    setTimeout(() => {
+      btn.style.background = '';
+      btn.childNodes[0].textContent = 'Request Demo ';
+      arrow.textContent = '→';
+      e.target.reset();
+    }, 3500);
+  }
+</script>
+</body>
+</html>

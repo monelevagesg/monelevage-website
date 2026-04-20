@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Mon Élevage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --burgundy-deep: #4a1b2e;
+      --green:         #2e7d32;
+      --burgundy-mid:  #7a2d44;
+      --rose:          #a84d63;
+      --blush:         #f2e4e8;
+      --green-deep:    #1c4a1e;
+      --black:         #1a1a1a;
+      --gray:          #6b6b6b;
+      --bg:            #0f090c;
+      --border:        rgba(242,228,232,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--blush);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; line-height: 1.1; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      padding: 1.8rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 9, 12, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .nav-wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blush);
+    }
+
+    .nav-logo .accent { color: var(--rose); }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--blush); }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      padding: 11rem 5rem 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header-eyebrow::before {
+      content: '';
+      width: 2.5rem;
+      height: 1px;
+      background: var(--rose);
+      display: block;
+    }
+
+    .page-title {
+      font-size: clamp(3rem, 5vw, 6rem);
+      font-weight: 300;
+      color: var(--blush);
+      margin-bottom: 1.5rem;
+    }
+
+    .page-title em { font-style: italic; color: var(--rose); }
+
+    .page-meta {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    /* ─── CONTENT ─── */
+    .policy-content {
+      max-width: 780px;
+      padding: 7rem 5rem;
+    }
+
+    .policy-section {
+      margin-bottom: 4rem;
+    }
+
+    .policy-section h2 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--blush);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .policy-section h2 em { font-style: italic; color: var(--rose); }
+
+    .policy-section p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--gray);
+      margin-bottom: 1.2rem;
+    }
+
+    .policy-section p strong {
+      color: var(--blush);
+      font-weight: 500;
+    }
+
+    .policy-section ul {
+      list-style: none;
+      margin: 1.2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .policy-section ul li {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--gray);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .policy-section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--rose);
+      opacity: 0.6;
+    }
+
+    .policy-section a {
+      color: var(--rose);
+      text-decoration: none;
+      opacity: 0.85;
+    }
+
+    .policy-section a:hover { opacity: 1; }
+
+    .highlight-box {
+      background: rgba(74,27,46,0.12);
+      border: 1px solid rgba(168,77,99,0.2);
+      padding: 2rem 2.5rem;
+      margin: 2rem 0;
+    }
+
+    .highlight-box p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--blush);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 3.5rem 5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(242,228,232,0.4);
+    }
+
+    .footer-logo .accent { color: var(--rose); }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(242,228,232,0.25);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--rose); }
+
+    .footer-copy {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(242,228,232,0.2);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      nav { padding: 1.6rem 2.5rem; }
+      .page-header { padding: 9rem 2.5rem 4rem; }
+      .policy-content { padding: 5rem 2.5rem; }
+      footer { padding: 2.5rem; flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 400 400" style="flex-shrink:0">
+      <circle cx="200" cy="200" r="200" fill="#F5F3F0"/>
+      <g transform="translate(200,200)">
+        <path d="M 0 -115 C 0 -115, -58 -51, -58 8 C -58 54, -31 82, 0 82 C 31 82, 58 54, 58 8 C 58 -51, 0 -115 0 -115 Z" fill="none" stroke="#7A2D44" stroke-width="7.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="0" cy="14" r="12.5" fill="#7A2D44"/>
+        <line x1="12.5" y1="14" x2="108" y2="14"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <line x1="108"  y1="14" x2="108" y2="-48" stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="108" cy="-48" r="10" fill="#2E7D32"/>
+        <line x1="-12.5" y1="14" x2="-108" y2="14"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <line x1="-108"  y1="14" x2="-108" y2="78"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="-108" cy="78" r="10" fill="none" stroke="#2E7D32" stroke-width="5"/>
+      </g>
+    </svg>
+    <span class="nav-wordmark">Mon <span class="accent">É</span>levage</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HEADER ─── -->
+<div class="page-header">
+  <div class="header-eyebrow">Legal</div>
+  <h1 class="page-title">Privacy <em>Policy</em></h1>
+  <p class="page-meta">Last updated: April 2026</p>
+</div>
+
+<!-- ─── CONTENT ─── -->
+<div class="policy-content">
+
+  <div class="highlight-box">
+    <p>We keep this simple. We collect only what we need, use it only for what we say, and never sell it. Full stop.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>1. Who We <em>Are</em></h2>
+    <p>Mon Élevage is a wine and technology consultancy registered as a sole proprietorship in Singapore. References to "we", "us", or "our" in this policy refer to Mon Élevage.</p>
+    <p>For any privacy-related queries, contact us at <a href="mailto:hello@monelevagesg.com">hello@monelevagesg.com</a>.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>2. What Data We <em>Collect</em></h2>
+    <p>We only collect personal data that you choose to provide to us directly, through:</p>
+    <ul>
+      <li><strong>Contact form</strong> — name, email address, company name, and your message</li>
+      <li><strong>Demo request form</strong> — name, email address, company, role, project description, and timeline</li>
+      <li><strong>Email correspondence</strong> — any information you share when you email us directly</li>
+    </ul>
+    <p>We do not use tracking pixels, third-party analytics, advertising cookies, or behavioural tracking of any kind on this website.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>3. How We <em>Use It</em></h2>
+    <p>We use your personal data solely to:</p>
+    <ul>
+      <li>Respond to your enquiry or demo request</li>
+      <li>Prepare and send a proposal if relevant</li>
+      <li>Communicate with you in the course of an engagement</li>
+    </ul>
+    <p>We will never use your data for unsolicited marketing, profiling, or any purpose beyond the reason you shared it with us.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>4. Who We <em>Share It With</em></h2>
+    <p><strong>No one.</strong> We do not sell, rent, or share your personal data with any third parties.</p>
+    <p>Your data may pass through the following infrastructure services solely to facilitate delivery:</p>
+    <ul>
+      <li><strong>Cloudflare</strong> — website hosting and email routing</li>
+      <li><strong>Google</strong> — email inbox (Gmail), used to receive and respond to messages</li>
+    </ul>
+    <p>Both are used only for delivery and storage — neither is granted access to use your data independently.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>5. How Long We <em>Keep It</em></h2>
+    <p>We retain your information for as long as reasonably necessary to respond to your enquiry or fulfil an engagement. If we determine no ongoing relationship exists, we delete correspondence data within 12 months.</p>
+    <p>You can request deletion of your data at any time by emailing <a href="mailto:hello@monelevagesg.com">hello@monelevagesg.com</a>.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>6. Cookies</h2>
+    <p>This website does not use cookies for tracking, advertising, or analytics. No cookie consent banner is necessary because no such cookies are set.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>7. Your <em>Rights</em></h2>
+    <p>Under Singapore's Personal Data Protection Act (PDPA), you have the right to:</p>
+    <ul>
+      <li>Request access to the personal data we hold about you</li>
+      <li>Request correction of any inaccurate data</li>
+      <li>Withdraw consent to our use of your data</li>
+      <li>Request deletion of your data</li>
+    </ul>
+    <p>To exercise any of these rights, email us at <a href="mailto:hello@monelevagesg.com">hello@monelevagesg.com</a>. We will respond within 10 business days.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>8. Changes to This <em>Policy</em></h2>
+    <p>If we make material changes to this policy, we will update the "Last updated" date at the top of this page. We encourage you to review this page periodically.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>9. <em>Contact</em></h2>
+    <p>Questions, requests, or concerns about this policy can be directed to:</p>
+    <p>
+      <strong>Mon Élevage</strong><br>
+      Singapore<br>
+      <a href="mailto:hello@monelevagesg.com">hello@monelevagesg.com</a>
+    </p>
+  </div>
+
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 400 400" style="opacity:0.45">
+      <circle cx="200" cy="200" r="200" fill="#F5F3F0"/>
+      <g transform="translate(200,200)">
+        <path d="M 0 -115 C 0 -115, -58 -51, -58 8 C -58 54, -31 82, 0 82 C 31 82, 58 54, 58 8 C 58 -51, 0 -115 0 -115 Z" fill="none" stroke="#7A2D44" stroke-width="7.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="0" cy="14" r="12.5" fill="#7A2D44"/>
+        <line x1="12.5" y1="14" x2="108" y2="14"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <line x1="108"  y1="14" x2="108" y2="-48" stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="108" cy="-48" r="10" fill="#2E7D32"/>
+        <line x1="-12.5" y1="14" x2="-108" y2="14"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <line x1="-108"  y1="14" x2="-108" y2="78"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="-108" cy="78" r="10" fill="none" stroke="#2E7D32" stroke-width="5"/>
+      </g>
+    </svg>
+    <span>Mon <span class="accent">É</span>levage</span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="demo.html">Request a Demo</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Mon Élevage. Singapore.</div>
+</footer>
+
+</body>
+</html>
