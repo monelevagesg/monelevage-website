@@ -540,6 +540,25 @@
       opacity: 0.5;
     }
 
+    .svc-demo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.8rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      text-decoration: none;
+      transition: gap 0.3s, color 0.3s;
+    }
+
+    .svc-demo-link span { transition: transform 0.3s; }
+
+    .svc-demo-link:hover { gap: 1.1rem; color: var(--blush); }
+
+    .svc-demo-link:hover span { transform: translateX(3px); }
+
     /* ─── CONTACT ─── */
     #contact {
       padding: 9rem 5rem;
@@ -1285,13 +1304,15 @@
     </div>
     <div class="service-card reveal reveal-delay-2">
       <div class="svc-num">03</div>
-      <h3 class="svc-name">Digital Strategy<br><em>& Advisory</em></h3>
-      <p class="svc-desc">Strategic advisory for wine businesses building or refining their digital presence — channels, content, community, and how it all fits together.</p>
+      <h3 class="svc-name">The Tasting<br><em>Companion</em></h3>
+      <p class="svc-desc">A blind tasting and scoring tool built for private wine events. Guests join from their phone with a link and a PIN, score each wine as they go, and watch the results come in live. No app to download.</p>
       <ul class="svc-bullets">
-        <li>Digital brand presence</li>
-        <li>Content & community strategy</li>
-        <li>Vendor & platform selection</li>
+        <li>Live blind scoring and leaderboard</li>
+        <li>Join by link and PIN, nothing to install</li>
+        <li>Post-event PDF report after the event</li>
+        <li>Ready for dinners, clubs, and private tastings</li>
       </ul>
+      <a class="svc-demo-link" href="https://pinotnoirdemo.netlify.app/" target="_blank" rel="noopener">Try the live demo <span>→</span></a>
     </div>
   </div>
 </section>
