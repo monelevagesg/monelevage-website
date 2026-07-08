@@ -995,6 +995,274 @@
       font-weight: 400;
     }
 
+    /* ─── TASTING COMPANION ─── */
+    #tasting-companion {
+      padding: 9rem 5rem;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    #tasting-companion::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 100% 0%, rgba(74,27,46,0.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 0% 100%, rgba(28,74,30,0.12) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .tc-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .tc-overline {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .tc-overline::before {
+      content: '';
+      width: 2rem;
+      height: 1px;
+      background: var(--rose);
+      display: block;
+    }
+    .tc-headline {
+      font-size: clamp(3rem, 5vw, 5.8rem);
+      font-weight: 300;
+      color: var(--blush);
+      line-height: 1.02;
+      margin-bottom: 2rem;
+    }
+    .tc-headline em { font-style: italic; color: var(--rose); }
+    .tc-subline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.5;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .tc-body {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+    .tc-body strong { color: var(--blush); font-weight: 500; }
+    .tc-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem 2.5rem;
+      margin-top: 3rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .tc-feat { display: flex; flex-direction: column; gap: 0.6rem; }
+    .tc-feat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--rose);
+      opacity: 0.5;
+      line-height: 1;
+    }
+    .tc-feat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--blush);
+      line-height: 1.3;
+    }
+    .tc-feat-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.7; }
+    .tc-right {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      position: sticky;
+      top: 6rem;
+    }
+    .tc-device {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(74,27,46,0.7) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(28,74,30,0.3) 0%, transparent 55%),
+        linear-gradient(160deg, #1c0d14 0%, #0d1a0e 100%);
+      border: 1px solid var(--border);
+      padding: 3rem 2.5rem;
+      aspect-ratio: 5/6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .phone-frame {
+      width: 220px;
+      background: #1a0d14;
+      border: 1px solid rgba(242,228,232,0.15);
+      border-radius: 24px;
+      padding: 1.2rem 1rem;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(168,77,99,0.1);
+      position: relative;
+    }
+    .phone-notch {
+      width: 60px; height: 4px;
+      background: rgba(242,228,232,0.2);
+      border-radius: 4px;
+      margin: 0 auto 1rem;
+    }
+    .phone-header {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rose);
+      text-align: center;
+      margin-bottom: 0.4rem;
+    }
+    .phone-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--blush);
+      text-align: center;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    .phone-wine {
+      background: rgba(242,228,232,0.04);
+      border: 1px solid rgba(242,228,232,0.08);
+      padding: 0.7rem 0.8rem;
+      margin-bottom: 0.6rem;
+    }
+    .phone-wine-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.3rem;
+    }
+    .phone-wine-code {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: var(--blush);
+      margin-bottom: 0.5rem;
+    }
+    .phone-score { display: flex; gap: 0.2rem; }
+    .phone-score .dot { flex: 1; height: 4px; background: rgba(242,228,232,0.15); }
+    .phone-score .dot.filled { background: var(--rose); }
+    .phone-btn {
+      background: var(--rose);
+      color: #fff;
+      text-align: center;
+      padding: 0.6rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 0.8rem;
+    }
+    .tc-device-caption {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(242,228,232,0.25);
+    }
+    .tc-pricing {
+      border: 1px solid var(--border);
+      background: rgba(74,27,46,0.08);
+      padding: 2.2rem 2rem;
+    }
+    .tc-pricing-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.5rem;
+    }
+    .tc-price-rows { display: flex; flex-direction: column; gap: 1.2rem; }
+    .tc-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .tc-price-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .tc-price-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--blush);
+      font-style: italic;
+    }
+    .tc-price-desc {
+      font-size: 0.72rem;
+      color: var(--gray);
+      margin-top: 0.2rem;
+      font-style: normal;
+    }
+    .tc-price-amt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--rose);
+      white-space: nowrap;
+    }
+    .tc-price-amt .cur {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      margin-right: 0.2rem;
+    }
+    .tc-price-note {
+      font-size: 0.72rem;
+      color: var(--gray);
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+    }
+    .tc-ctas {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+    .tc-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      transition: gap 0.3s, background 0.3s;
+    }
+    .tc-cta.primary { background: var(--rose); color: #fff; }
+    .tc-cta.primary:hover { background: var(--burgundy-mid); gap: 1.4rem; }
+    .tc-cta.secondary {
+      color: var(--blush);
+      border: 1px solid rgba(242,228,232,0.2);
+    }
+    .tc-cta.secondary:hover {
+      border-color: var(--rose);
+      color: var(--rose);
+      gap: 1.4rem;
+    }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1100px) {
       nav { padding: 1.6rem 2.5rem; }
@@ -1022,12 +1290,19 @@
       .divider { padding: 6rem 2.5rem; }
 
       footer { padding: 2.5rem; flex-direction: column; gap: 1.2rem; text-align: center; }
+
+      #tasting-companion { padding: 7rem 2.5rem; }
+      .tc-inner { grid-template-columns: 1fr; gap: 4rem; }
+      .tc-right { position: static; }
     }
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .form-row { grid-template-columns: 1fr; }
       .hero-title { font-size: clamp(3.2rem, 14vw, 5.5rem); }
+      .tc-features { grid-template-columns: 1fr; }
+      .tc-ctas { flex-direction: column; }
+      .tc-cta { justify-content: center; }
     }
   </style>
 </head>
@@ -1253,6 +1528,110 @@
 </section>
 
 <!-- ╔══════════════════════════════╗ -->
+<!-- ║      TASTING COMPANION       ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section id="tasting-companion">
+  <div class="tc-inner">
+    <div class="tc-left">
+      <div class="tc-overline">The Tasting Companion</div>
+      <h2 class="tc-headline">
+        Blind tasting,<br>
+        <em>done properly.</em>
+      </h2>
+      <p class="tc-subline">
+        The tasting tool we built for our own dinners. Now yours to use.
+      </p>
+      <p class="tc-body">
+        <strong>Guests join from their phone</strong> with a link and a PIN. They score each wine as they go, and the leaderboard reveals live at the end of the flight. No app to download. Nothing to install.
+      </p>
+      <p class="tc-body">
+        You send us the wine list. We set up the pages, the scoring, the reveal, the QR code, and the keepsake PDF sent to your guests after the event.
+      </p>
+      <div class="tc-features">
+        <div class="tc-feat">
+          <div class="tc-feat-num">01</div>
+          <div class="tc-feat-title">Live blind scoring</div>
+          <div class="tc-feat-desc">Guests score each wine on their phone. Leaderboard revealed when you're ready.</div>
+        </div>
+        <div class="tc-feat">
+          <div class="tc-feat-num">02</div>
+          <div class="tc-feat-title">Nothing to install</div>
+          <div class="tc-feat-desc">A link and a PIN. Works on any phone, any browser.</div>
+        </div>
+        <div class="tc-feat">
+          <div class="tc-feat-num">03</div>
+          <div class="tc-feat-title">Post-event PDF</div>
+          <div class="tc-feat-desc">Guests receive a keepsake of the wines, scores, and notes after the event.</div>
+        </div>
+        <div class="tc-feat">
+          <div class="tc-feat-num">04</div>
+          <div class="tc-feat-title">Built for private events</div>
+          <div class="tc-feat-desc">Dinners, wine clubs, distributor tastings, and private cellar nights.</div>
+        </div>
+      </div>
+      <div class="tc-ctas">
+        <a href="https://pinotnoirdemo.netlify.app/" target="_blank" class="tc-cta primary">Try the live demo →</a>
+        <a href="#contact" class="tc-cta secondary">Book it for your event →</a>
+      </div>
+    </div>
+    <div class="tc-right">
+      <div class="tc-device">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-header">Flight One</div>
+          <div class="phone-title">Blind Tasting</div>
+          <div class="phone-wine">
+            <div class="phone-wine-label">Wine</div>
+            <div class="phone-wine-code">A</div>
+            <div class="phone-score">
+              <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+            </div>
+          </div>
+          <div class="phone-wine">
+            <div class="phone-wine-label">Wine</div>
+            <div class="phone-wine-code">B</div>
+            <div class="phone-score">
+              <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+          </div>
+          <div class="phone-wine">
+            <div class="phone-wine-label">Wine</div>
+            <div class="phone-wine-code">C</div>
+            <div class="phone-score">
+              <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+            </div>
+          </div>
+          <div class="phone-btn">Submit scores</div>
+        </div>
+        <div class="tc-device-caption">Guest view · live scoring</div>
+      </div>
+      <div class="tc-pricing">
+        <div class="tc-pricing-label">Pricing</div>
+        <div class="tc-price-rows">
+          <div class="tc-price-row">
+            <div>
+              <div class="tc-price-name">Single event</div>
+              <div class="tc-price-desc">All-in. Setup, scoring, PDF.</div>
+            </div>
+            <div class="tc-price-amt"><span class="cur">SGD</span>200</div>
+          </div>
+          <div class="tc-price-row">
+            <div>
+              <div class="tc-price-name">Two-event bundle</div>
+              <div class="tc-price-desc">For clubs and regular hosts.</div>
+            </div>
+            <div class="tc-price-amt"><span class="cur">SGD</span>300</div>
+          </div>
+        </div>
+        <div class="tc-price-note">
+          Custom event scale and recurring programmes on request.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════╗ -->
 <!-- ╚══════════════════════════════╝ -->
 <div class="divider">
   <div class="divider-bg"><span>Craft × Code</span></div>
@@ -1360,7 +1739,7 @@
           <option value="" disabled selected>Select a topic</option>
           <option value="wine-consulting">Wine Program Consulting</option>
           <option value="wine-tech">Wine × Tech Product</option>
-          <option value="digital-strategy">Digital Strategy</option>
+          <option value="tasting-companion">The Tasting Companion</option>
           <option value="other">Something else</option>
         </select>
       </div>
