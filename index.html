@@ -1013,10 +1013,8 @@
     }
     .tc-inner {
       position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: start;
+      display: flex;
+      flex-direction: column;
     }
     .tc-overline {
       font-size: 0.62rem;
@@ -1034,6 +1032,17 @@
       height: 1px;
       background: var(--rose);
       display: block;
+    }
+    .tc-rule {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    .tc-visual-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
     }
     .tc-headline {
       font-size: clamp(3rem, 5vw, 5.8rem);
@@ -1085,13 +1094,6 @@
       line-height: 1.3;
     }
     .tc-feat-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.7; }
-    .tc-right {
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-      position: sticky;
-      top: 6rem;
-    }
     .tc-device {
       position: relative;
       background:
@@ -1292,15 +1294,13 @@
       footer { padding: 2.5rem; flex-direction: column; gap: 1.2rem; text-align: center; }
 
       #tasting-companion { padding: 7rem 2.5rem; }
-      .tc-inner { grid-template-columns: 1fr; gap: 4rem; }
-      .tc-right { position: static; order: -1; }
+      .tc-visual-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .form-row { grid-template-columns: 1fr; }
       .hero-title { font-size: clamp(3.2rem, 14vw, 5.5rem); }
-      .tc-features { grid-template-columns: 1fr; }
       .tc-ctas { flex-direction: column; }
       .tc-cta { justify-content: center; }
     }
@@ -1532,7 +1532,7 @@
 <!-- ╚══════════════════════════════╝ -->
 <section id="tasting-companion">
   <div class="tc-inner">
-    <div class="tc-left">
+    <div class="tc-text">
       <div class="tc-overline">The Tasting Companion</div>
       <h2 class="tc-headline">
         Blind tasting,<br>
@@ -1547,34 +1547,9 @@
       <p class="tc-body">
         You send us the wine list. We set up the pages, the scoring, the reveal, the QR code, and the keepsake PDF sent to your guests after the event.
       </p>
-      <div class="tc-features">
-        <div class="tc-feat">
-          <div class="tc-feat-num">01</div>
-          <div class="tc-feat-title">Live blind scoring</div>
-          <div class="tc-feat-desc">Guests score each wine on their phone. Leaderboard revealed when you're ready.</div>
-        </div>
-        <div class="tc-feat">
-          <div class="tc-feat-num">02</div>
-          <div class="tc-feat-title">Nothing to install</div>
-          <div class="tc-feat-desc">A link and a PIN. Works on any phone, any browser.</div>
-        </div>
-        <div class="tc-feat">
-          <div class="tc-feat-num">03</div>
-          <div class="tc-feat-title">Post-event PDF</div>
-          <div class="tc-feat-desc">Guests receive a keepsake of the wines, scores, and notes after the event.</div>
-        </div>
-        <div class="tc-feat">
-          <div class="tc-feat-num">04</div>
-          <div class="tc-feat-title">Built for private events</div>
-          <div class="tc-feat-desc">Dinners, wine clubs, distributor tastings, and private cellar nights.</div>
-        </div>
-      </div>
-      <div class="tc-ctas">
-        <a href="https://pinotnoirdemo.netlify.app/" target="_blank" class="tc-cta primary">Try the live demo →</a>
-        <a href="#contact" class="tc-cta secondary">Book it for your event →</a>
-      </div>
     </div>
-    <div class="tc-right">
+    <hr class="tc-rule">
+    <div class="tc-visual-row">
       <div class="tc-device">
         <div class="phone-frame">
           <div class="phone-notch"></div>
@@ -1627,6 +1602,32 @@
           Custom event scale and recurring programmes on request.
         </div>
       </div>
+    </div>
+    <div class="tc-features">
+      <div class="tc-feat">
+        <div class="tc-feat-num">01</div>
+        <div class="tc-feat-title">Live blind scoring</div>
+        <div class="tc-feat-desc">Guests score each wine on their phone. Leaderboard revealed when you're ready.</div>
+      </div>
+      <div class="tc-feat">
+        <div class="tc-feat-num">02</div>
+        <div class="tc-feat-title">Nothing to install</div>
+        <div class="tc-feat-desc">A link and a PIN. Works on any phone, any browser.</div>
+      </div>
+      <div class="tc-feat">
+        <div class="tc-feat-num">03</div>
+        <div class="tc-feat-title">Post-event PDF</div>
+        <div class="tc-feat-desc">Guests receive a keepsake of the wines, scores, and notes after the event.</div>
+      </div>
+      <div class="tc-feat">
+        <div class="tc-feat-num">04</div>
+        <div class="tc-feat-title">Built for private events</div>
+        <div class="tc-feat-desc">Dinners, wine clubs, distributor tastings, and private cellar nights.</div>
+      </div>
+    </div>
+    <div class="tc-ctas">
+      <a href="https://pinotnoirdemo.netlify.app/" target="_blank" class="tc-cta primary">Try the live demo →</a>
+      <a href="#contact" class="tc-cta secondary">Book it for your event →</a>
     </div>
   </div>
 </section>
