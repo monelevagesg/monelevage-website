@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Your Wine — Mon Élevage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── EVENT CONFIG ───────────────────────────────────────────
+       Edit this list whenever events change.
+       Format: { label: "Display name", value: "internal-id" }
+    ─────────────────────────────────────────────────────────── */
+
+    :root {
+      --burgundy-deep: #4a1b2e;
+      --burgundy-mid:  #7a2d44;
+      --rose:          #a84d63;
+      --blush:         #f2e4e8;
+      --gray:          #6b6b6b;
+      --bg:            #0f090c;
+      --border:        rgba(242,228,232,0.09);
+      --green-deep:    #1c4a1e;
+      --card-bg:       rgba(242,228,232,0.025);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--blush);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 3rem 1rem 5rem;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .page {
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 2.5rem;
+      text-decoration: none;
+    }
+
+    .header-wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(242,228,232,0.5);
+    }
+
+    .header-wordmark .accent { color: var(--rose); }
+
+    .header-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 7vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--blush);
+      margin-bottom: 0.9rem;
+    }
+
+    .header-title em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .header-sub {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    /* ─── EVENT SELECT ─── */
+    .event-block {
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── FORM CHROME ─── */
+    .form-label {
+      display: block;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(242,228,232,0.4);
+      margin-bottom: 0.55rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: rgba(242,228,232,0.03);
+      border: 1px solid rgba(242,228,232,0.1);
+      color: var(--blush);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      border-radius: 0;
+      -webkit-appearance: none;
+      appearance: none;
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: rgba(242,228,232,0.18);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--rose);
+      background: rgba(168,77,99,0.05);
+    }
+
+    select option { background: #1a0d14; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── SUBMITTER BLOCK ─── */
+    .submitter-block {
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    /* ─── WINE CARDS ─── */
+    .wines-section {
+      margin-bottom: 2rem;
+    }
+
+    .wines-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .wines-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--blush);
+    }
+
+    .wines-count {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    .wine-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .wine-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.8rem 1.6rem;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .wine-card:hover {
+      border-color: rgba(168,77,99,0.25);
+    }
+
+    .wine-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.4rem;
+    }
+
+    .wine-card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(168,77,99,0.5);
+      letter-spacing: 0.05em;
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      color: rgba(242,228,232,0.2);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 0.3rem 0;
+      transition: color 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .remove-btn:hover { color: var(--rose); }
+
+    .wine-card-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    /* ─── ADD WINE BUTTON ─── */
+    .add-wine-btn {
+      width: 100%;
+      background: none;
+      border: 1px dashed rgba(168,77,99,0.3);
+      color: var(--rose);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 1rem;
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s, color 0.25s;
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .add-wine-btn:hover {
+      border-color: var(--rose);
+      background: rgba(168,77,99,0.05);
+    }
+
+    .add-wine-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    /* ─── DIVIDER ─── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* ─── SUBMIT ─── */
+    .submit-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      background: var(--rose);
+      color: #fff;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s, gap 0.25s;
+      width: 100%;
+    }
+
+    .submit-btn .arrow { transition: transform 0.25s; }
+
+    .submit-btn:hover:not(:disabled) {
+      background: var(--burgundy-mid);
+      gap: 1.4rem;
+    }
+
+    .submit-btn:hover:not(:disabled) .arrow { transform: translateX(4px); }
+
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .form-note {
+      font-size: 0.72rem;
+      color: rgba(242,228,232,0.25);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ─── SUCCESS STATE ─── */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+
+    .success-screen.visible { display: block; }
+
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      border: 1px solid rgba(168,77,99,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      font-size: 1.4rem;
+      color: var(--rose);
+    }
+
+    .success-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--blush);
+      margin-bottom: 0.8rem;
+    }
+
+    .success-title em { font-style: italic; color: var(--rose); }
+
+    .success-body {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.75;
+      max-width: 360px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .success-back {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: gap 0.25s;
+    }
+
+    .success-back:hover { gap: 0.9rem; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 560px) {
+      .form-row { grid-template-columns: 1fr; }
+      body { padding: 2rem 1rem 4rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="https://monelevagesg.com" class="header-logo" aria-label="Mon Élevage home">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 400 400">
+        <circle cx="200" cy="200" r="200" fill="#F5F3F0"/>
+        <g transform="translate(200,200)">
+          <path d="M 0 -115 C 0 -115, -58 -51, -58 8 C -58 54, -31 82, 0 82 C 31 82, 58 54, 58 8 C 58 -51, 0 -115 0 -115 Z" fill="none" stroke="#7A2D44" stroke-width="7.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="0" cy="14" r="12.5" fill="#7A2D44"/>
+          <line x1="12.5" y1="14" x2="108" y2="14"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+          <line x1="108"  y1="14" x2="108" y2="-48" stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="108" cy="-48" r="10" fill="#2E7D32"/>
+          <line x1="-12.5" y1="14" x2="-108" y2="14"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+          <line x1="-108"  y1="14" x2="-108" y2="78"  stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="-108" cy="78" r="10" fill="none" stroke="#2E7D32" stroke-width="5"/>
+        </g>
+      </svg>
+      <span class="header-wordmark">Mon <span class="accent">É</span>levage</span>
+    </a>
+    <h1 class="header-title">Submit your <em>wine.</em></h1>
+    <p class="header-sub">Bringing a bottle to one of our events? Let us know what to expect. If you're bringing more than one, add them all here.</p>
+  </header>
+
+  <!-- FORM -->
+  <form id="wineForm" action="https://formspree.io/f/xzdyvkjj" method="POST" novalidate>
+
+    <!-- YOUR DETAILS -->
+    <div class="submitter-block">
+      <div class="form-group">
+        <label class="form-label" for="submitter-name">Your name</label>
+        <input type="text" id="submitter-name" name="submitter_name" placeholder="First and last name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="submitter-email">Email</label>
+        <input type="email" id="submitter-email" name="submitter_email" placeholder="you@example.com" required>
+      </div>
+    </div>
+
+    <!-- EVENT SELECT -->
+    <div class="event-block">
+      <div class="form-group">
+        <label class="form-label" for="event-select">Which event are you attending?</label>
+        <select id="event-select" name="event" required>
+          <option value="" disabled selected>Select an event</option>
+          <!-- events are populated by JS from the config below -->
+        </select>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- WINES -->
+    <div class="wines-section">
+      <div class="wines-header">
+        <h2 class="wines-title">Your wines</h2>
+        <span class="wines-count" id="wineCount">1 wine</span>
+      </div>
+      <div class="wine-cards" id="wineCards"></div>
+      <button type="button" class="add-wine-btn" id="addWineBtn" aria-label="Add another wine">
+        <span>+</span> Add another wine
+      </button>
+    </div>
+
+    <!-- SUBMIT -->
+    <hr class="section-divider">
+    <div class="submit-row">
+      <button type="submit" class="submit-btn" id="submitBtn">
+        Submit <span class="arrow">→</span>
+      </button>
+      <p class="form-note">We'll have your bottle(s) on our list. See you there.</p>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen" role="alert" aria-live="polite">
+    <div class="success-icon">✓</div>
+    <h2 class="success-title">You're on the <em>list.</em></h2>
+    <p class="success-body">We've got your submission. See you at the tasting.</p>
+    <button class="success-back" id="resetBtn">← Submit another</button>
+  </div>
+
+</div>
+
+<script>
+  /* ================================================================
+     EVENT CONFIG
+     Edit this array to update the event dropdown.
+     Each entry: { label: "Display name", value: "internal-id" }
+     ================================================================ */
+  const EVENTS = [
+    { label: "29 July | Chenin Blanc Showcase with Aman",        value: "chenin-blanc-29-jul" },
+    { label: "1 August | Aux Brûlées: One Climat, Many Voices",  value: "aux-brulees-1-aug" },
+    { label: "12 August | Village Wednesday: Gevrey-Chambertin", value: "village-wednesday-12-aug" },
+  ];
+
+  /* ================================================================
+     WINE CARD TEMPLATE
+     ================================================================ */
+  const MAX_WINES = 6;
+  let wineCount = 0;
+
+  function createWineCard(index) {
+    const card = document.createElement('div');
+    card.className = 'wine-card';
+    card.dataset.index = index;
+
+    const num = index + 1;
+    const showRemove = index > 0;
+
+    card.innerHTML = `
+      <div class="wine-card-header">
+        <span class="wine-card-num">Wine ${num}</span>
+        ${showRemove ? `<button type="button" class="remove-btn" aria-label="Remove wine ${num}">Remove</button>` : ''}
+      </div>
+      <div class="wine-card-fields">
+        <div class="form-group">
+          <label class="form-label" for="wine-producer-${index}">Producer / wine name</label>
+          <input type="text" id="wine-producer-${index}" name="wine_${num}_producer" placeholder="e.g. Domaine Leflaive, Puligny-Montrachet" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="wine-vintage-${index}">Vintage</label>
+          <input type="text" id="wine-vintage-${index}" name="wine_${num}_vintage" placeholder="e.g. 2019" maxlength="4" inputmode="numeric">
+        </div>
+      </div>
+    `;
+
+    const removeBtn = card.querySelector('.remove-btn');
+    if (removeBtn) {
+      removeBtn.addEventListener('click', () => removeWineCard(card));
+    }
+
+    return card;
+  }
+
+  function addWineCard() {
+    const container = document.getElementById('wineCards');
+    const card = createWineCard(wineCount);
+    container.appendChild(card);
+    wineCount++;
+    updateUI();
+
+    // Focus first input of new card
+    const firstInput = card.querySelector('input');
+    if (firstInput) firstInput.focus();
+  }
+
+  function removeWineCard(card) {
+    card.remove();
+    wineCount--;
+    renumberCards();
+    updateUI();
+  }
+
+  function renumberCards() {
+    const cards = document.querySelectorAll('.wine-card');
+    cards.forEach((card, i) => {
+      card.dataset.index = i;
+      const numEl = card.querySelector('.wine-card-num');
+      if (numEl) numEl.textContent = `Wine ${i + 1}`;
+
+      // Update input names to stay sequential
+      const producer = card.querySelector('[id^="wine-producer-"]');
+      const vintage  = card.querySelector('[id^="wine-vintage-"]');
+      if (producer) {
+        producer.id   = `wine-producer-${i}`;
+        producer.name = `wine_${i + 1}_producer`;
+      }
+      if (vintage) {
+        vintage.id   = `wine-vintage-${i}`;
+        vintage.name = `wine_${i + 1}_vintage`;
+      }
+
+      // Show remove on all except the first
+      let removeBtn = card.querySelector('.remove-btn');
+      if (i === 0 && removeBtn) {
+        removeBtn.remove();
+      } else if (i > 0 && !removeBtn) {
+        const header = card.querySelector('.wine-card-header');
+        removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'remove-btn';
+        removeBtn.setAttribute('aria-label', `Remove wine ${i + 1}`);
+        removeBtn.textContent = 'Remove';
+        removeBtn.addEventListener('click', () => removeWineCard(card));
+        header.appendChild(removeBtn);
+      }
+    });
+  }
+
+  function updateUI() {
+    const count = document.querySelectorAll('.wine-card').length;
+    const countEl = document.getElementById('wineCount');
+    countEl.textContent = count === 1 ? '1 wine' : `${count} wines`;
+
+    const addBtn = document.getElementById('addWineBtn');
+    addBtn.disabled = count >= MAX_WINES;
+    if (count >= MAX_WINES) {
+      addBtn.textContent = `Maximum ${MAX_WINES} wines per submission`;
+    } else {
+      addBtn.innerHTML = '<span>+</span> Add another wine';
+    }
+  }
+
+  /* ================================================================
+     POPULATE EVENT DROPDOWN
+     ================================================================ */
+  function populateEvents() {
+    const select = document.getElementById('event-select');
+    EVENTS.forEach(ev => {
+      const opt = document.createElement('option');
+      opt.value = ev.value;
+      opt.textContent = ev.label;
+      select.appendChild(opt);
+    });
+  }
+
+  /* ================================================================
+     FORM SUBMISSION
+     ================================================================ */
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn  = document.getElementById('submitBtn');
+
+    // Basic validation
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // Check at least one producer is filled
+    const producers = form.querySelectorAll('[name$="_producer"]');
+    const anyFilled = Array.from(producers).some(p => p.value.trim() !== '');
+    if (!anyFilled) {
+      producers[0].focus();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = 'Submitting… <span class="arrow">→</span>';
+
+    try {
+      const res = await fetch('https://formspree.io/f/xzdyvkjj', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        document.getElementById('wineForm').style.display = 'none';
+        document.getElementById('successScreen').classList.add('visible');
+      } else {
+        btn.disabled = false;
+        btn.innerHTML = 'Something went wrong — try again <span class="arrow">×</span>';
+        setTimeout(() => {
+          btn.innerHTML = 'Submit <span class="arrow">→</span>';
+        }, 3000);
+      }
+    } catch {
+      btn.disabled = false;
+      btn.innerHTML = 'Something went wrong — try again <span class="arrow">×</span>';
+      setTimeout(() => {
+        btn.innerHTML = 'Submit <span class="arrow">→</span>';
+      }, 3000);
+    }
+  }
+
+  /* ================================================================
+     RESET (submit another)
+     ================================================================ */
+  function resetForm() {
+    const form = document.getElementById('wineForm');
+    form.reset();
+    form.style.display = '';
+    document.getElementById('successScreen').classList.remove('visible');
+
+    // Reset wine cards
+    document.getElementById('wineCards').innerHTML = '';
+    wineCount = 0;
+    addWineCard();
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = false;
+    btn.innerHTML = 'Submit <span class="arrow">→</span>';
+  }
+
+  /* ================================================================
+     INIT
+     ================================================================ */
+  populateEvents();
+  addWineCard(); // start with one card
+
+  document.getElementById('wineForm').addEventListener('submit', handleSubmit);
+  document.getElementById('addWineBtn').addEventListener('click', addWineCard);
+  document.getElementById('resetBtn').addEventListener('click', resetForm);
+</script>
+
+</body>
+</html>
