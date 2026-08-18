@@ -91,6 +91,35 @@
 
     .nav-links a:hover { color: var(--blush); }
 
+
+    /* mobile menu */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid rgba(242,228,232,0.15);
+      color: var(--blush);
+      width: 2.6rem;
+      height: 2.6rem;
+      cursor: pointer;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 1.1rem;
+      height: 1px;
+      background: var(--blush);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    nav.open .nav-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+    nav.open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
     /* SHARED */
     .section-label {
       font-size: 0.62rem;
@@ -448,7 +477,30 @@
     }
 
     @media (max-width: 640px) {
-      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+
+      nav { flex-wrap: wrap; }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        order: 3;
+        margin-top: 1.2rem;
+        border-top: 1px solid var(--border);
+      }
+
+      nav.open .nav-links { display: flex; }
+
+      .nav-links li { width: 100%; }
+
+      .nav-links a {
+        display: block;
+        padding: 1.1rem 0;
+        font-size: 0.78rem;
+        border-bottom: 1px solid var(--border);
+      }
       .steps-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -477,6 +529,9 @@
     <li><a href="#options">Options</a></li>
     <li><a href="#closing">Book it</a></li>
   </ul>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -672,6 +727,23 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // mobile menu
+  (function () {
+    var navEl = document.querySelector('nav');
+    var toggle = document.querySelector('.nav-toggle');
+    if (!navEl || !toggle) return;
+    toggle.addEventListener('click', function () {
+      var open = navEl.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navEl.querySelectorAll('.nav-links a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        navEl.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
 </script>
 
 </body>
