@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Tasting Companion — Interactive Wine Tastings | Mon Élevage</title>
+  <meta name="description" content="A blind tasting and scoring tool for wine events. Guests join by link and PIN, score from their phone, and get a keepsake PDF. Take the tool, or have a sommelier host the night. From SGD200.">
+  <link rel="canonical" href="https://monelevagesg.com/tasting-companion.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://monelevagesg.com/tasting-companion.html">
+  <meta property="og:title" content="The Tasting Companion — Mon Élevage">
+  <meta property="og:description" content="Everything about the wine, in their hand. Interactive tastings for sommeliers, importers and wine clubs.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --burgundy-deep: #4a1b2e;
+      --burgundy-mid:  #7a2d44;
+      --rose:          #a84d63;
+      --blush:         #f2e4e8;
+      --gray:          #6b6b6b;
+      --bg:            #0f090c;
+      --border:        rgba(242,228,232,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--blush);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; line-height: 1.05; }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      padding: 1.4rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 9, 12, 0.9);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+
+    .nav-wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blush);
+    }
+
+    .nav-logo .accent { color: var(--rose); }
+    .nav-links { display: flex; gap: 2.6rem; list-style: none; align-items: center; }
+
+    .nav-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--blush); }
+
+    /* SHARED */
+    .section-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::before { content: ''; width: 2rem; height: 1px; background: var(--rose); display: block; }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blush);
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+
+    .cta span { transition: transform 0.3s; display: inline-block; }
+    .cta:hover { gap: 1.6rem; }
+    .cta.secondary { color: var(--gray); }
+    .cta.secondary:hover { color: var(--rose); }
+
+    .shot-img {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--border);
+      filter: saturate(0.9);
+    }
+
+    .shot-caption {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(242,228,232,0.35);
+      margin-top: 0.8rem;
+    }
+
+    /* HERO */
+    .tc-hero {
+      padding: 7rem 5rem 6rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      background: radial-gradient(ellipse at 75% 40%, rgba(74,27,46,0.35) 0%, transparent 60%);
+    }
+
+    .tc-title {
+      font-size: clamp(3rem, 5.5vw, 6rem);
+      font-weight: 300;
+      color: var(--blush);
+      margin-bottom: 1.8rem;
+    }
+
+    .tc-title em { font-style: italic; color: var(--rose); }
+
+    .tc-lede {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(242,228,232,0.7);
+      max-width: 34rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .tc-lede-sub { font-size: 0.95rem; line-height: 1.8; color: var(--gray); max-width: 34rem; margin-bottom: 2.8rem; }
+    .tc-ctas { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+
+    /* STEPS */
+    #steps { padding: 8rem 5rem; border-top: 1px solid var(--border); }
+
+    .steps-head {
+      font-size: clamp(2.2rem, 3.4vw, 3.6rem);
+      font-weight: 300;
+      color: var(--blush);
+      margin-bottom: 4rem;
+    }
+
+    .steps-head em { font-style: italic; color: var(--rose); }
+
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+    .step { border-top: 1px solid rgba(168,77,99,0.3); padding-top: 1.5rem; }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: rgba(168,77,99,0.3);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .step-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blush);
+      margin-bottom: 0.8rem;
+    }
+
+    .step-body { font-size: 0.85rem; line-height: 1.8; color: var(--gray); }
+
+    /* PHOTO BAND */
+    .photo-band { position: relative; border-top: 1px solid var(--border); }
+
+    .photo-band img {
+      width: 100%;
+      display: block;
+      max-height: 70vh;
+      object-fit: cover;
+      filter: saturate(0.85) brightness(0.8);
+    }
+
+    .photo-band-caption {
+      position: absolute;
+      left: 5rem;
+      bottom: 3rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2.4vw, 2.4rem);
+      font-style: italic;
+      color: var(--blush);
+      text-shadow: 0 2px 24px rgba(15,9,12,0.9);
+      max-width: 26rem;
+      line-height: 1.35;
+    }
+
+    /* SPLIT */
+    #split {
+      padding: 8rem 5rem;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+
+    .split-col h3 {
+      font-size: 1.9rem;
+      font-weight: 400;
+      color: var(--blush);
+      margin-bottom: 1.6rem;
+    }
+
+    .split-col h3 em { font-style: italic; color: var(--rose); }
+
+    .split-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+
+    .split-list li {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--gray);
+      padding-left: 1.4rem;
+      position: relative;
+    }
+
+    .split-list li::before { content: '—'; position: absolute; left: 0; color: var(--rose); opacity: 0.55; }
+
+    /* GALLERY */
+    #gallery { padding: 8rem 5rem; border-top: 1px solid var(--border); }
+    .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 900px; margin: 0 auto; }
+
+    /* OPTIONS */
+    #options { padding: 8rem 5rem; border-top: 1px solid var(--border); }
+
+    .options-head {
+      font-size: clamp(2.2rem, 3.4vw, 3.6rem);
+      font-weight: 300;
+      color: var(--blush);
+      margin-bottom: 1.2rem;
+    }
+
+    .options-head em { font-style: italic; color: var(--rose); }
+    .options-sub { font-size: 0.95rem; color: var(--gray); margin-bottom: 3.5rem; max-width: 36rem; }
+    .offer-grid { display: grid; grid-template-columns: 1fr 1fr; }
+
+    .offer {
+      border: 1px solid var(--border);
+      border-right: none;
+      padding: 2.8rem 2.4rem;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.4s;
+    }
+
+    .offer:last-child { border-right: 1px solid var(--border); }
+    .offer:hover { background: rgba(74,27,46,0.15); }
+
+    .offer-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.2rem;
+    }
+
+    .offer-name { font-size: 1.7rem; font-weight: 400; color: var(--blush); margin-bottom: 1rem; }
+    .offer-name em { font-style: italic; color: var(--rose); }
+    .offer-body { font-size: 0.88rem; line-height: 1.8; color: var(--gray); margin-bottom: 1.5rem; }
+    .offer-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 2rem; }
+
+    .offer-list li {
+      font-size: 0.79rem;
+      color: rgba(242,228,232,0.42);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .offer-list li::before { content: '—'; position: absolute; left: 0; color: var(--rose); opacity: 0.5; }
+
+    .offer-price {
+      margin-top: auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: rgba(242,228,232,0.6);
+    }
+
+    .offer-price strong { color: var(--rose); font-style: normal; font-weight: 400; }
+
+    .price-note {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.8;
+      max-width: 40rem;
+    }
+
+    /* WHO */
+    #who { padding: 8rem 5rem; border-top: 1px solid var(--border); }
+
+    .who-head {
+      font-size: clamp(2.2rem, 3.4vw, 3.6rem);
+      font-weight: 300;
+      color: var(--blush);
+      margin-bottom: 3.5rem;
+    }
+
+    .who-head em { font-style: italic; color: var(--rose); }
+    .who-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+
+    .who-card {
+      border: 1px solid var(--border);
+      border-right: none;
+      padding: 2.4rem 1.9rem;
+      transition: background 0.4s;
+    }
+
+    .who-card:last-child { border-right: 1px solid var(--border); }
+    .who-card:hover { background: rgba(74,27,46,0.15); }
+
+    .who-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      color: var(--blush);
+      margin-bottom: 0.9rem;
+    }
+
+    .who-body { font-size: 0.83rem; line-height: 1.8; color: var(--gray); }
+
+    /* CLOSING */
+    #closing {
+      padding: 8rem 5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 50%, rgba(74,27,46,0.3) 0%, transparent 65%);
+    }
+
+    .closing-head {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.6vw, 4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--blush);
+      margin-bottom: 2.5rem;
+      line-height: 1.35;
+    }
+
+    .closing-head span { color: var(--rose); }
+    .closing-ctas { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer {
+      padding: 3.5rem 5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(242,228,232,0.4);
+    }
+
+    .footer-logo .accent { color: var(--rose); }
+
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: rgba(242,228,232,0.2);
+    }
+
+    .footer-copy { font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(242,228,232,0.2); }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { gap: 1.4rem; }
+
+      .tc-hero, #steps, #split, #gallery, #options, #who, #closing {
+        padding: 5rem 2rem;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .photo-band-caption { left: 2rem; bottom: 2rem; }
+      .gallery-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+      .offer-grid, .who-grid { grid-template-columns: 1fr; }
+      .offer, .who-card { border-right: 1px solid var(--border); border-bottom: none; }
+      .offer:last-child, .who-card:last-child { border-bottom: 1px solid var(--border); }
+
+      footer { padding: 2.5rem 2rem; flex-direction: column; gap: 1.2rem; text-align: center; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .steps-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo" aria-label="Mon Élevage home">
+    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 400 400" style="flex-shrink:0">
+      <circle cx="200" cy="200" r="200" fill="#F5F3F0"/>
+      <g transform="translate(200,200)">
+        <path d="M 0 -115 C 0 -115, -58 -51, -58 8 C -58 54, -31 82, 0 82 C 31 82, 58 54, 58 8 C 58 -51, 0 -115 0 -115 Z" fill="none" stroke="#7A2D44" stroke-width="7.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="0" cy="14" r="12.5" fill="#7A2D44"/>
+        <line x1="12.5" y1="14" x2="108" y2="14" stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <line x1="108" y1="14" x2="108" y2="-48" stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="108" cy="-48" r="10" fill="#2E7D32"/>
+        <line x1="-12.5" y1="14" x2="-108" y2="14" stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <line x1="-108" y1="14" x2="-108" y2="78" stroke="#2E7D32" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="-108" cy="78" r="10" fill="none" stroke="#2E7D32" stroke-width="5"/>
+      </g>
+    </svg>
+    <span class="nav-wordmark">Mon <span class="accent">É</span>levage</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#options">Options</a></li>
+    <li><a href="#closing">Book it</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="tc-hero">
+  <div>
+    <div class="section-label">The Tasting Companion</div>
+    <h1 class="tc-title">Everything about<br>the wine,<br><em>in their hand.</em></h1>
+    <p class="tc-lede">
+      Guests join from their phone with a link and a PIN. The wines, the notes, the producer stories, all in one place they can open before, during and after the tasting.
+    </p>
+    <p class="tc-lede-sub">
+      They score as they go. The results reveal when you're ready. A keepsake PDF lands in their inbox afterwards. Nothing to download, nothing to print, nothing left on the table at the end of the night.
+    </p>
+    <div class="tc-ctas">
+      <a href="index.html#contact" class="cta">Book your event <span>&rarr;</span></a>
+      <a href="https://pinotnoirdemo.netlify.app/" target="_blank" rel="noopener" class="cta secondary">Try the live demo <span>&rarr;</span></a>
+    </div>
+  </div>
+  <div>
+    <img class="shot-img" src="images/tasting-start.jpg" alt="Tasting Companion start screen on a phone" loading="lazy">
+    <p class="shot-caption">Guests join by link and PIN, no app needed</p>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section id="steps">
+  <div class="section-label reveal">How it runs</div>
+  <h2 class="steps-head reveal">Four steps,<br><em>start to finish.</em></h2>
+  <div class="steps-grid">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">You send the wines</div>
+      <p class="step-body">A list is enough. We handle the flights, the notes, the producer background and the running order.</p>
+    </div>
+    <div class="step reveal reveal-delay-1">
+      <div class="step-num">02</div>
+      <div class="step-title">We set it up</div>
+      <p class="step-body">Pages, scoring, PINs and a QR code, ready to print for the table or drop into a group chat.</p>
+    </div>
+    <div class="step reveal reveal-delay-2">
+      <div class="step-num">03</div>
+      <div class="step-title">Guests taste and score</div>
+      <p class="step-body">They read, taste and rate on their own phone. No app, no signup, no fumbling. Guest note taking can be switched on if you want it.</p>
+    </div>
+    <div class="step reveal reveal-delay-3">
+      <div class="step-num">04</div>
+      <div class="step-title">Results and keepsake</div>
+      <p class="step-body">You reveal the scores when the moment is right. Everyone gets a PDF of the night afterwards.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO BAND -->
+<div class="photo-band">
+  <img src="images/tasting-in-use.jpg" alt="A guest joining a tasting on their phone at the table" loading="lazy">
+  <p class="photo-band-caption">No handouts. No app.<br>Just the phone already in their hand.</p>
+</div>
+
+<!-- SPLIT -->
+<section id="split">
+  <div class="split-col reveal">
+    <h3>What you<br><em>send us</em></h3>
+    <ul class="split-list">
+      <li>The wine list, in whatever form you have it</li>
+      <li>The date, the number of guests, and roughly how long you have</li>
+      <li>Whether it's blind, half blind, or open</li>
+      <li>Anything you want the guests to walk away knowing</li>
+    </ul>
+  </div>
+  <div class="split-col reveal reveal-delay-1">
+    <h3>What we<br><em>set up</em></h3>
+    <ul class="split-list">
+      <li>Pages built around your flights, one wine or several, with notes and producer background</li>
+      <li>Scoring and comments, flight by flight</li>
+      <li>Live results and a reveal you control</li>
+      <li>The QR code and PINs for the room</li>
+      <li>A keepsake PDF sent out after the event</li>
+    </ul>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-label reveal">On the night</div>
+  <h2 class="steps-head reveal">What your guests<br><em>actually see.</em></h2>
+  <div class="gallery-grid">
+    <div class="reveal">
+      <img class="shot-img" src="images/tasting-wine-detail.jpg" alt="Wine detail page with tasting notes and producer background" loading="lazy">
+      <p class="shot-caption">The wine, the notes, the producer</p>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <img class="shot-img" src="images/tasting-scoring.jpg" alt="Scoring screen with a flight of three wines and quiz questions" loading="lazy">
+      <p class="shot-caption">Score the flight, answer the questions</p>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <img class="shot-img" src="images/tasting-results.jpg" alt="Live results and leaderboard" loading="lazy">
+      <p class="shot-caption">Results, revealed when you're ready</p>
+    </div>
+    <div class="reveal reveal-delay-3">
+      <img class="shot-img" src="images/tasting-keepsake.jpg" alt="Keepsake PDF with wine notes, expert scores and pricing" loading="lazy">
+      <p class="shot-caption">The keepsake PDF, sent afterwards</p>
+    </div>
+  </div>
+</section>
+
+<!-- OPTIONS -->
+<section id="options">
+  <div class="section-label reveal">Two ways to run it</div>
+  <h2 class="options-head reveal">Take the tool,<br><em>or take the night off.</em></h2>
+  <p class="options-sub reveal">Same tool underneath. The difference is who stands up and runs the room.</p>
+
+  <div class="offer-grid">
+    <div class="offer reveal">
+      <div class="offer-tag">Option one</div>
+      <h3 class="offer-name">The tool,<br><em>you host</em></h3>
+      <p class="offer-body">
+        You run the tasting. We build everything behind it and hand you the keys before the night. Good for sommeliers with their own crowd, wine clubs, and trade tastings where the wines change every time.
+      </p>
+      <ul class="offer-list">
+        <li>Your wines, your flights, your notes</li>
+        <li>Live scoring and results</li>
+        <li>QR code and PINs ready to go</li>
+        <li>Keepsake PDF to guests afterwards</li>
+      </ul>
+      <p class="offer-price">From <strong>SGD200</strong> per event, all in.<br>Two events, <strong>SGD300</strong>.</p>
+    </div>
+
+    <div class="offer reveal reveal-delay-1">
+      <div class="offer-tag">Option two</div>
+      <h3 class="offer-name">The tool,<br><em>we host</em></h3>
+      <p class="offer-body">
+        Everything above, plus a sommelier on the floor running it. I build the flights, write the questions, lead the tasting and read the room. You get to be a guest at your own event.
+      </p>
+      <ul class="offer-list">
+        <li>Flight design and input on the wine selection</li>
+        <li>Blind tasting questions written for your crowd</li>
+        <li>Sommelier hosting on the night</li>
+        <li>Post-event report and guest keepsake</li>
+      </ul>
+      <p class="offer-price">Price on request, based on length, group size and how much we build.</p>
+    </div>
+  </div>
+
+  <p class="price-note reveal">
+    Recurring programmes and larger events are quoted separately. If you run tastings every month, tell us and we'll price it properly instead of charging you like it's a one-off.
+  </p>
+</section>
+
+<!-- WHO -->
+<section id="who">
+  <div class="section-label reveal">Who it's for</div>
+  <h2 class="who-head reveal">Built for people<br><em>who pour for a living.</em></h2>
+  <div class="who-grid">
+    <div class="who-card reveal">
+      <div class="who-title">Sommeliers</div>
+      <p class="who-body">Keep the room with you instead of watching phones drift. Guests read while you pour, and the notes are there when they want them.</p>
+    </div>
+    <div class="who-card reveal reveal-delay-1">
+      <div class="who-title">Importers and distributors</div>
+      <p class="who-body">Trade tastings without a stack of printed sheets. Clients can review the range before, during and long after the session.</p>
+    </div>
+    <div class="who-card reveal reveal-delay-2">
+      <div class="who-title">Wine clubs</div>
+      <p class="who-body">Scores, favourites and a leaderboard that gives the night a shape. Members get a record of what they drank.</p>
+    </div>
+    <div class="who-card reveal reveal-delay-3">
+      <div class="who-title">Private hosts</div>
+      <p class="who-body">A dinner where the wine is the point. Guests take part rather than nodding politely at a bottle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section id="closing">
+  <p class="closing-head reveal">
+    Send us the wine list.<br>
+    <span>We'll take it from there.</span>
+  </p>
+  <div class="closing-ctas reveal reveal-delay-1">
+    <a href="index.html#contact" class="cta">Book your event <span>&rarr;</span></a>
+    <a href="https://pinotnoirdemo.netlify.app/" target="_blank" rel="noopener" class="cta secondary">Try the live demo <span>&rarr;</span></a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Mon <span class="accent">É</span>levage</div>
+  <div class="footer-tagline">Craft × Code</div>
+  <div class="footer-copy">© 2026 Mon Élevage. Singapore. &nbsp;·&nbsp; UEN 53521123J</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
