@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon Élevage — The Wine System</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --burgundy-deep:#4a1b2e; --green:#2e7d32; --burgundy-mid:#7a2d44;
+    --rose:#a84d63; --blush:#f2e4e8; --black:#1a1a1a; --gray:#6b6b6b;
+    --bg:#0f090c; --border:rgba(242,228,232,0.08);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--blush);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.05;}
+  em{font-style:italic;color:var(--rose);}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.6rem 5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(15,9,12,0.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+  .nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.05rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--blush);}
+  .nav-logo .accent::first-letter{color:var(--rose);}
+  .nav-back{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);text-decoration:none;}
+  .nav-back:hover{color:var(--blush);}
+
+  .hero{padding:11rem 5rem 6rem;max-width:1300px;display:grid;grid-template-columns:1.05fr 1fr;gap:4rem;align-items:center;}
+  .eyebrow{font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--rose);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;}
+  .eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--rose);display:block;}
+  .hero h1{font-size:clamp(2.6rem,4.8vw,4.6rem);font-weight:300;color:var(--blush);margin-bottom:1.8rem;max-width:14ch;}
+  .hero-sub{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;font-weight:300;color:var(--gray);max-width:38ch;margin-bottom:2.5rem;}
+  .cta-row{display:flex;gap:1.2rem;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:0.8rem;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;padding:1rem 2rem;text-decoration:none;transition:background 0.3s,gap 0.3s;}
+  .btn-primary{background:var(--rose);color:#fff;}
+  .btn-primary:hover{background:var(--burgundy-mid);gap:1.2rem;}
+  .btn-ghost{border:1px solid rgba(242,228,232,0.2);color:var(--blush);}
+  .btn-ghost:hover{border-color:var(--rose);color:var(--rose);}
+
+  /* Signature: spreadsheet row morphing into wine list entry */
+  .morph{position:relative;}
+  .cell-row{
+    font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:rgba(242,228,232,0.45);
+    background:rgba(242,228,232,0.03); border:1px solid var(--border);
+    display:grid; grid-template-columns:1.4fr 0.6fr 0.7fr; gap:0;
+  }
+  .cell-row div{padding:0.85rem 1rem; border-right:1px solid var(--border);}
+  .cell-row div:last-child{border-right:none;}
+  .morph-arrow{text-align:center; padding:0.7rem 0; color:var(--rose); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.95rem;}
+  .list-entry{
+    background:rgba(242,228,232,0.04); border:1px solid var(--border); border-left:3px solid var(--rose);
+    padding:1.4rem 1.6rem;
+  }
+  .list-entry .name{font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--blush); margin-bottom:0.3rem;}
+  .list-entry .meta{font-size:0.78rem; color:var(--gray); margin-bottom:0.6rem;}
+  .list-entry .note{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.95rem; color:rgba(242,228,232,0.55);}
+  .morph-caption{text-align:center; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray); margin-top:1.2rem;}
+
+  .problem{padding:6rem 5rem;border-top:1px solid var(--border);max-width:1200px;}
+  .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+  .problem h2{font-size:clamp(2.2rem,3.5vw,3.4rem);font-weight:300;margin-bottom:1.5rem;}
+  .problem p{color:var(--gray);font-size:0.95rem;line-height:1.85;max-width:38ch;}
+  .old-list{list-style:none;display:flex;flex-direction:column;gap:1rem;}
+  .old-list li{font-size:0.9rem;color:rgba(242,228,232,0.45);padding-left:1.4rem;position:relative;border-bottom:1px solid var(--border);padding-bottom:1rem;}
+  .old-list li::before{content:'×';position:absolute;left:0;color:var(--rose);opacity:0.6;}
+
+  #system{padding:7rem 5rem;border-top:1px solid var(--border);}
+  .section-label{font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--rose);margin-bottom:3rem;display:flex;align-items:center;gap:1rem;}
+  .section-label::before{content:'';width:2rem;height:1px;background:var(--rose);display:block;}
+  .system-heading{font-size:clamp(2.4rem,4vw,4rem);font-weight:300;margin-bottom:4rem;max-width:20ch;}
+  .system-grid{display:grid;grid-template-columns:repeat(3,1fr);}
+  .sys-card{padding:3rem 2.2rem;border:1px solid var(--border);border-right:none;position:relative;}
+  .sys-card:last-child{border-right:1px solid var(--border);}
+  .sys-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--rose);transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease;}
+  .sys-card:hover::after{transform:scaleX(1);}
+  .sys-tag{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose);margin-bottom:1.5rem;}
+  .sys-card h3{font-size:1.5rem;font-weight:400;color:var(--blush);margin-bottom:1rem;line-height:1.25;}
+  .sys-card p{font-size:0.85rem;line-height:1.8;color:var(--gray);margin-bottom:1.5rem;}
+  .sys-card ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+  .sys-card ul li{font-size:0.75rem;color:rgba(242,228,232,0.35);padding-left:1rem;position:relative;}
+  .sys-card ul li::before{content:'—';position:absolute;left:0;color:var(--rose);opacity:0.5;}
+
+  .connect{padding:6rem 5rem;border-top:1px solid var(--border);text-align:center;}
+  .connect-flow{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+  .flow-node{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--blush);padding:1rem 2rem;border:1px solid var(--border);}
+  .flow-arrow{color:var(--rose);font-size:1.4rem;}
+  .connect p{font-size:0.95rem;color:var(--gray);max-width:36ch;margin:0 auto;}
+
+  .founder-note{padding:6rem 5rem;border-top:1px solid var(--border);text-align:center;}
+  .founder-note p{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,2.6vw,2.2rem);font-style:italic;font-weight:300;color:var(--blush);max-width:32ch;margin:0 auto;}
+  .founder-note p strong{color:var(--rose);font-weight:400;}
+
+  #contact{padding:7rem 5rem;border-top:1px solid var(--border);text-align:center;}
+  #contact h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:300;margin-bottom:2rem;}
+  .contact-info{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;}
+  .contact-info a{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.3s;}
+  .contact-info a:hover{color:var(--rose);}
+
+  footer{padding:2.5rem 5rem;border-top:1px solid var(--border);text-align:center;font-size:0.65rem;letter-spacing:0.1em;color:rgba(242,228,232,0.2);}
+
+  @media (max-width:900px){
+    nav,.hero,.problem,#system,.connect,.founder-note,#contact,footer{padding-left:1.6rem;padding-right:1.6rem;}
+    .hero{grid-template-columns:1fr;}
+    .problem-grid{grid-template-columns:1fr;gap:2.5rem;}
+    .system-grid{grid-template-columns:1fr;}
+    .sys-card{border-right:1px solid var(--border);border-bottom:none;}
+    .contact-info{flex-direction:column;gap:1rem;}
+    .cell-row{grid-template-columns:1fr;}
+    .cell-row div{border-right:none;border-bottom:1px solid var(--border);}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Mon <span class="accent">Élevage</span></a>
+  <a href="https://monelevagesg.com" class="nav-back">← Back to site</a>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">For Wine &amp; F&amp;B Businesses in Singapore</div>
+    <h1>Your wine list should update <em>itself</em>.</h1>
+    <p class="hero-sub">One system for inventory, guest experience, and the data that tells you what's working.</p>
+    <div class="cta-row">
+      <a href="mailto:hello@monelevagesg.com" class="btn btn-primary">Talk to us →</a>
+      <a href="#system" class="btn btn-ghost">See what's included</a>
+    </div>
+  </div>
+  <div class="morph">
+    <div class="cell-row">
+      <div>Sauvignon Blanc, Marlborough</div>
+      <div>Qty: 3</div>
+      <div>$68</div>
+    </div>
+    <div class="morph-arrow">↓ becomes ↓</div>
+    <div class="list-entry">
+      <div class="name">Sauvignon Blanc</div>
+      <div class="meta">Marlborough, New Zealand · $68</div>
+      <div class="note">Crisp, citrus led, a little grassy — built for the humidity.</div>
+    </div>
+    <p class="morph-caption">One row. Two places it lives. Update it once.</p>
+  </div>
+</section>
+
+<section class="problem">
+  <div class="problem-grid">
+    <div>
+      <h2>Sound familiar?</h2>
+      <p>You're not short on wine knowledge. You're short on time — and the tools you're using were never built for wine.</p>
+    </div>
+    <ul class="old-list">
+      <li>Stock tracked in an Excel sheet someone has to remember to update</li>
+      <li>A printed or PDF wine list that goes stale the moment a bottle sells out</li>
+      <li>Two systems to keep in sync by hand, every single time</li>
+      <li>No easy way to see what's actually selling, and what's just sitting there</li>
+    </ul>
+  </div>
+</section>
+
+<section id="system">
+  <div class="section-label">The System</div>
+  <h2 class="system-heading">One update. Everything <em>updates</em>.</h2>
+  <div class="system-grid">
+    <div class="sys-card">
+      <div class="sys-tag">Inventory</div>
+      <h3>The Dashboard</h3>
+      <p>Track your wine stock in a system built for wine, not adapted from generic retail software. Easy to manage, easy to hand off to staff.</p>
+      <ul>
+        <li>Track stock in real time</li>
+        <li>Built for wine, not adapted</li>
+        <li>Simple enough for any staff member</li>
+      </ul>
+    </div>
+    <div class="sys-card">
+      <div class="sys-tag">Guest Experience</div>
+      <h3>The Wine List</h3>
+      <p>A beautiful, customizable list your guests actually see — fully linked to your inventory. Update your stock once, and it updates everywhere.</p>
+      <ul>
+        <li>Scoring &amp; tasting notes</li>
+        <li>Wine info &amp; food pairing</li>
+        <li>Filter by grape, region, price</li>
+      </ul>
+    </div>
+    <div class="sys-card">
+      <div class="sys-tag">Data</div>
+      <h3>The Reporting</h3>
+      <p>See what's moving fast and needs restocking, what's sitting too long, and what your regulars keep coming back for.</p>
+      <ul>
+        <li>Fast movers &amp; slow stock</li>
+        <li>Sales by category &amp; time</li>
+        <li>Customer favorites over time</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="connect">
+  <div class="section-label" style="justify-content:center;">How It Connects</div>
+  <div class="connect-flow">
+    <div class="flow-node">Your Inventory</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">Guest Wine List</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">Your Reports</div>
+  </div>
+  <p>Update your stock once. Your guest list and your reports update with it. No syncing two systems by hand.</p>
+</section>
+
+<div class="founder-note">
+  <p>Built by a sommelier who got tired of <strong>doing this the hard way.</strong></p>
+</div>
+
+<section id="contact">
+  <h2>Let's talk about your list.</h2>
+  <div class="contact-info">
+    <a href="mailto:hello@monelevagesg.com">hello@monelevagesg.com</a>
+    <a href="https://www.linkedin.com/company/monelevage" target="_blank">LinkedIn</a>
+    <a href="#">Singapore, SG</a>
+  </div>
+</section>
+
+<footer>© 2026 Mon Élevage. Singapore. &nbsp;·&nbsp; UEN 53521123J</footer>
+
+</body>
+</html>
