@@ -3,16 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Run a Blind Wine Tasting at Home | Mon Élevage</title>
-<meta name="description" content="A practical guide to hosting a blind wine tasting at home: what to buy, how to build flights, a ready-made AI prompt to arrange them, and a question bank for guests.">
-<meta name="robots" content="noindex">
+<title>Free blind tasting kit | Mon Élevage</title>
+<meta name="description" content="A free guide to running a blind wine tasting at home: how to pick a theme, arrange flights, an AI prompt to sort your wines, a question bank, and how to score the night.">
 <link rel="canonical" href="https://monelevagesg.com/blind-tasting-kit">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:url" content="https://monelevagesg.com/blind-tasting-kit">
-<meta property="og:title" content="How to Run a Blind Wine Tasting at Home">
-<meta property="og:description" content="A practical guide to hosting a blind wine tasting at home: what to buy, how to build flights, a ready-made AI prompt to arrange them, and a question bank for guests.">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="icon" type="image/png" href="../favicon.png">
+<meta property="og:title" content="Free blind tasting kit | Mon Élevage">
+<meta property="og:description" content="A free guide to running a blind wine tasting at home: how to pick a theme, arrange flights, an AI prompt to sort your wines, a question bank, and how to score the night.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -53,7 +52,7 @@
   main {
     max-width: 640px;
     margin: 0 auto;
-    padding: 0.5rem 1.25rem 5rem;
+    padding: 0.5rem 1.25rem 3rem;
   }
 
   h1, h2 {
@@ -74,78 +73,21 @@
 
   h1 {
     font-size: clamp(2rem, 8vw, 2.75rem);
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.5rem;
   }
 
   h2 {
     font-size: clamp(1.4rem, 5vw, 1.75rem);
-    margin: 2.75rem 0 1.25rem;
+    margin: 2rem 0 1rem;
   }
 
   p {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.1rem;
   }
 
   strong {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-  }
-
-  em {
-    font-style: italic;
-  }
-
-  .rule {
-    border: none;
-    border-top: 1px solid var(--gold);
-    width: 44px;
-    margin: 2.75rem 0;
-  }
-
-  .prompt-card {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    padding: 1.5rem;
-    margin: 1.5rem 0 2rem;
-  }
-
-  .prompt-text {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-    font-size: 0.85rem;
-    line-height: 1.8;
-    color: var(--navy);
-    white-space: pre-wrap;
-    margin-bottom: 1.5rem;
-  }
-
-  .copy-btn {
-    display: inline-block;
-    background: var(--gold);
-    color: #fff;
-    border: none;
-    border-radius: 2px;
-    padding: 0.65rem 1.4rem;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-
-  .copy-btn:hover { background: var(--gold-deep); }
-  .copy-btn:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
-
-  .group-label {
-    display: block;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--gold-deep);
-    margin: 2rem 0 0.75rem;
   }
 
   .question-list {
@@ -160,29 +102,65 @@
 
   .question-list li:last-child { border-bottom: none; }
 
-  .signature {
-    text-align: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.15rem;
+  .signup-form {
+    margin: 1.5rem 0;
+  }
+
+  .signup-form input[type="email"] {
+    display: block;
+    width: 100%;
+    background: #fff;
+    color: var(--navy);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 0.9rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .signup-form input[type="email"]::placeholder { color: var(--navy-soft); }
+
+  .signup-form button {
+    display: block;
+    width: 100%;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 0.9rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .signup-form button:hover { background: var(--gold-deep); }
+  .signup-form button:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
+
+  .row-success {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .row-success p:last-child { margin-bottom: 0; }
+
+  .note {
+    font-size: 0.8rem;
     color: var(--navy-soft);
     margin-top: 1rem;
   }
 
   @media (min-width: 640px) {
     .site-header { padding: 2.25rem 1.25rem; }
-    main { padding: 1rem 1.25rem 6rem; }
+    main { padding: 1rem 1.25rem 4rem; }
     .site-header img { height: 64px; }
-  }
-
-  @media print {
-    .site-header, .copy-btn { display: none; }
-    body { background: #fff; }
-    main { max-width: none; padding: 0 0.5rem; }
-    h2, .eyebrow { break-after: avoid; page-break-after: avoid; }
-    p, .prompt-card, .question-list li { break-inside: avoid; page-break-inside: avoid; }
-    .rule { margin: 1.5rem 0; }
-    a { color: var(--navy); text-decoration: none; }
   }
 </style>
 </head>
@@ -195,189 +173,53 @@
 </header>
 
 <main>
-  <p class="eyebrow">The Blind Tasting Kit</p>
+  <p class="eyebrow">Free guide</p>
   <h1>How to run a blind tasting at home</h1>
 
-  <p>You don't need a sommelier. You need blind bags or foil, a bit of structure, and the right questions.</p>
+  <p>At a BYO dinner everyone can see the labels. The expensive bottle gets the compliments, and nobody learns anything.</p>
 
-  <p>Here's how I build them.</p>
+  <p>Cover them and the night gets interesting. The compliments go to whichever wine earned them, and you find out what you like with no name or price telling you what to think.</p>
 
-  <hr class="rule">
+  <p>This is the simplified version of the method I use when I run tastings professionally, written for a dinner table.</p>
 
-  <h2>What you need</h2>
+  <h2>What's in it</h2>
 
-  <p>Six bottles. Or four. More than eight and people stop paying attention.</p>
+  <ul class="question-list">
+    <li>How to pick a theme, and the different ways to arrange flights underneath it</li>
+    <li>The prompt I use to sort wines into flights, ready to copy into your AI tool of choice</li>
+    <li>A question bank that works whether your guests know wine or don't</li>
+    <li>How to score it, and how to run the reveal so it lands</li>
+  </ul>
 
-  <p>Blind socks, paper bags, or aluminium foil to cover the labels. Foil is cheapest and you probably have it.</p>
+  <div id="mlb2-45530125" class="ml-subscribe-form-45530125">
+    <div class="row-form">
+      <form class="signup-form" action="https://assets.mailerlite.com/jsonp/2613078/forms/197592332742166000/subscribe" method="post" target="_blank">
+        <input aria-label="email" aria-required="true" type="email" name="fields[email]" placeholder="Email" autocomplete="email" required>
+        <input type="hidden" name="ml-submit" value="1">
+        <button type="submit">Send me the kit!</button>
+        <input type="hidden" name="anticsrf" value="true">
+      </form>
+    </div>
 
-  <p>Two glasses per person minimum, so they can hold one wine against another. A jug of water for rinsing, and something to spit into. A flask or an opaque jug works. It's fine to spit, and it's how you get to the last flight still able to taste.</p>
-
-  <p>Paper and pens.</p>
-
-  <p><strong>The cheat that makes this affordable:</strong> everyone brings one bottle to a price cap. Twenty dollars, fifty, whatever suits the group. You end up with six wines and nobody paid for six wines. Tell them the theme in advance so the bottles hang together.</p>
-
-  <hr class="rule">
-
-  <h2>Step one: pick your theme</h2>
-
-  <p>The theme is the boundary around the whole night. It's what all the bottles have in common.</p>
-
-  <p>Keep it broad enough to actually buy. Some that work:</p>
-
-  <p>Chambolle-Musigny. US against French Chardonnay. New World wines under a hundred dollars. French whites older than 2020. Riesling from three countries. Anything from 2018.</p>
-
-  <p>The test is whether you can say it in one line and whether a wine shop could fill the order.</p>
-
-  <h2>Step two: arrange the flights</h2>
-
-  <p>This is where the tasting happens.</p>
-
-  <p>A flight is two or three glasses poured together, with one thing changed between them. The theme holds the night together. The flight is what people actually compare.</p>
-
-  <p>Four ways to build one.</p>
-
-  <p><strong>Age.</strong> Same style, different years. Two Australian Chardonnays, one 2015 and one 2022. What time does to a wine, in two glasses.</p>
-
-  <p><strong>Producer.</strong> Same region, same grape, different hands. People assume the region does the work. This flight shows them it doesn't.</p>
-
-  <p><strong>Winemaking.</strong> One variable held against itself. Oak against no oak. Whole bunch against destemmed. Steel against concrete.</p>
-
-  <p><strong>Grape.</strong> Different varieties inside the same theme. If your night is French whites older than 2020, a Chardonnay against a Chenin is a flight.</p>
-
-  <p>You can mix these across one evening. Flight one on age, flight two on producer. The theme keeps it coherent.</p>
-
-  <hr class="rule">
-
-  <h2>Let AI do the arranging</h2>
-
-  <p>Working out which wine goes next to which is the fiddly part. Hand it over.</p>
-
-  <p>Paste this in. Fill in the brackets.</p>
-
-  <div class="prompt-card">
-    <div class="prompt-text" id="promptText">I'm hosting a blind tasting for [number] people.
-
-My guests are: [casual drinkers / wine lovers / collectors / WSET, CMS or WSG students or graduates / a mix]
-
-The theme of the night is: [e.g. US against French Chardonnay / French whites older than 2020 / New World under $100]
-
-Here are the wines available to me:
-
-[List each wine: producer, wine name, vintage, region. Add anything you know about how it's made, like oak or no oak, whole bunch or destemmed, steel or concrete. Leave blank what you don't know.]
-
-Arrange these into flights of two or three glasses. Each flight should change one thing between the wines: age, producer, winemaking technique, or grape. Tell me which one each flight is built on.
-
-For each flight give me:
-- Which wines, in which pouring order, and why that order
-- What the contrast is that guests should notice
-- Three questions to ask, pitched at the wine knowledge level of my guests
-
-Rules:
-- Only use the wines and the information I gave you. Do not add facts about these producers or vintages that I did not supply. If something would help and I haven't given it to you, ask me instead of guessing.</div>
-    <button class="copy-btn" id="copyBtn" type="button">Copy prompt</button>
+    <div class="row-success" style="display: none">
+      <p><strong>Check your inbox.</strong></p>
+      <p>The blind tasting&nbsp;kit is on its way. If it hasn't landed in a minute, look in your promotions or spam folder.</p>
+    </div>
   </div>
 
-  <p><strong>Why the rules matter.</strong> AI is good at ordering things and writing questions. It is not good at knowing what's actually in the bottle. Ask it whether a producer destems and it will tell you, confidently, and it might be wrong. Then you repeat it at the table and someone who knows better corrects you.</p>
-
-  <p>So you bring the facts. It brings the structure. That split is the whole trick.</p>
-
-  <hr class="rule">
-
-  <h2>Pouring</h2>
-
-  <p>Cover the labels before anyone arrives. Number the bags. Keep a list somewhere they can't see it.</p>
-
-  <p>Pour a whole flight at once so people can go back and forth. Comparison is where the thinking happens.</p>
-
-  <p>Small pours. There's more in the bottle if someone wants to go back to a wine.</p>
-
-  <p>One rule, enforced properly: nobody says anything out loud until everyone has written theirs down. The first person to say "this smells like cherry" has just decided what everyone else smells. That's not a joke about suggestibility, it's the single biggest thing that ruins a home tasting.</p>
-
-  <hr class="rule">
-
-  <h2>A question bank, if you need it</h2>
-
-  <p>The prompt writes questions for you. Use those. This list is for when you're not using the prompt, or when what comes back is thin and you want to swap something in.</p>
-
-  <p>Two kinds. Guesses, and preferences. A good night has both. Guesses give people something to be right about. Preferences give everyone else something to say.</p>
-
-  <span class="group-label">Guesses</span>
-  <ul class="question-list">
-    <li>What grape is this?</li>
-    <li>Old world or new world?</li>
-    <li>Where do you think it's from?</li>
-    <li>Which one has seen oak?</li>
-    <li>How old is it?</li>
-    <li>Warm climate or cool?</li>
-    <li>Which is the most expensive? Which is the cheapest?</li>
-    <li>Which two are the same grape?</li>
-  </ul>
-
-  <span class="group-label">Preferences</span>
-  <ul class="question-list">
-    <li>Which glass would you drink a whole bottle of?</li>
-    <li>Which is the odd one out, and what makes it odd?</li>
-    <li>Which one would you bring to your parents' house?</li>
-    <li>If these were people, which one is the show-off?</li>
-  </ul>
-
-  <p>Nobody has to answer everything. The ones who know wine will chase the guesses. The ones who don't will have opinions on the rest, and their opinions are usually the more interesting ones.</p>
-
-  <hr class="rule">
-
-  <h2>Scoring</h2>
-
-  <p>This is how you decide the Wine of the Night.</p>
-
-  <p>Everyone ranks the wines. One is your favourite, and count up from there to your least. Collect the papers, add up each wine's total, and the lowest number wins.</p>
-
-  <p>That's it. No hundred point scales, no maths, no spreadsheets on the table.</p>
-
-  <hr class="rule">
-
-  <h2>The reveal</h2>
-
-  <p>Do it flight by flight, not all at the end. The tension resets each time and people stay in it.</p>
-
-  <p>Announce the group's ranking before you announce what the wines were. That order matters. People commit to their favourite, then find out what it was. Watching someone realise their favourite was the cheapest bottle on the table is the best moment of the night.</p>
-
-  <p>Then unwrap and tell them what they drank. Prices last.</p>
-
-  <p>Expect at least one person to be annoyed. That's the tasting working. 😒</p>
-
-  <hr class="rule">
-
-  <h2>A note from the other side of the table</h2>
-
-  <p>Here's what happens when you host this: it goes well, everyone has a good night, and you spend the whole evening collecting bits of paper and doing sums in the kitchen while everyone else drinks.</p>
-
-  <p>You built the flights. You poured. You tallied. You never got to be a guest at your own party.</p>
-
-  <p>I know because I did it that way for years.</p>
-
-  <hr class="rule">
-
-  <p class="signature">Made by Janet, mon élevage. I run blind tastings, and I build the tech that runs them.</p>
+  <p class="note">Note: I might send something else occasionally, when it's worth sending.</p>
 </main>
 
 <script>
-  (function () {
-    var btn = document.getElementById('copyBtn');
-    var text = document.getElementById('promptText');
-    if (!btn || !text) return;
-    var defaultLabel = btn.textContent;
-    var resetTimer = null;
-
-    btn.addEventListener('click', function () {
-      navigator.clipboard.writeText(text.textContent).then(function () {
-        btn.textContent = 'Copied';
-        clearTimeout(resetTimer);
-        resetTimer = setTimeout(function () {
-          btn.textContent = defaultLabel;
-        }, 2000);
-      });
-    });
-  })();
+  function ml_webform_success_45530125() {
+    var $ = ml_jQuery || jQuery;
+    $('.ml-subscribe-form-45530125 .row-success').show();
+    $('.ml-subscribe-form-45530125 .row-form').hide();
+  }
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+<script>
+  fetch("https://assets.mailerlite.com/jsonp/2613078/forms/197592332742166000/takel")
 </script>
 
 </body>
