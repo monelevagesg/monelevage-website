@@ -193,17 +193,13 @@
 
   <div id="mlb2-45530125" class="ml-subscribe-form-45530125">
     <div class="row-form">
-      <form class="signup-form" action="https://assets.mailerlite.com/jsonp/2613078/forms/197592332742166000/subscribe" method="post" target="_blank">
+      <form class="signup-form" id="signup-form" action="https://assets.mailerlite.com/jsonp/2613078/forms/197592332742166000/subscribe" method="post">
         <input aria-label="email" aria-required="true" type="email" name="fields[email]" placeholder="Email" autocomplete="email" required>
         <input type="hidden" name="ml-submit" value="1">
         <button type="submit">Send me the kit!</button>
         <input type="hidden" name="anticsrf" value="true">
       </form>
-    </div>
-
-    <div class="row-success" style="display: none">
-      <p><strong>Check your inbox.</strong></p>
-      <p>The blind tasting&nbsp;kit is on its way. If it hasn't landed in a minute, look in your promotions or spam folder.</p>
+      <p class="note" id="signup-error" style="display: none">Something went wrong. Please try again.</p>
     </div>
   </div>
 
@@ -211,18 +207,32 @@
 </main>
 
 <script>
-  function ml_webform_success_45530125() {
-    try {
-      window.top.location.href = 'https://monelevagesg.com/blind-tasting-kit/thanks';
-    } catch (e) {
-      window.location.href = 'https://monelevagesg.com/blind-tasting-kit/thanks';
-    }
-  }
-</script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
-<script>
-  fetch("https://assets.mailerlite.com/jsonp/2613078/forms/197592332742166000/takel")
+  (function () {
+    var form = document.getElementById('signup-form');
+    if (!form) return;
+    var button = form.querySelector('button[type="submit"]');
+    var defaultLabel = button.textContent;
+    var errorEl = document.getElementById('signup-error');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      button.disabled = true;
+      button.textContent = 'Sending...';
+      if (errorEl) errorEl.style.display = 'none';
+
+      fetch(form.action, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: new FormData(form)
+      }).then(function () {
+        window.location.href = 'https://monelevagesg.com/blind-tasting-kit/thanks';
+      }).catch(function () {
+        button.disabled = false;
+        button.textContent = defaultLabel;
+        if (errorEl) errorEl.style.display = 'block';
+      });
+    });
+  })();
 </script>
 
 </body>
