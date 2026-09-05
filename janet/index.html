@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Janet Lee | Mon Élevage</title>
+<meta name="description" content="Blind tastings, wine psychology, and the tech that runs them.">
+<meta property="og:title" content="Janet Lee | Mon Élevage">
+<meta property="og:description" content="Blind tastings, wine psychology, and the tech that runs them.">
+<meta property="og:url" content="https://monelevagesg.com/janet">
+<meta property="og:image" content="https://monelevagesg.com/favicon.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://monelevagesg.com/janet">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:#FAF7F2; --paper-deep:#F2EDE5;
+    --navy:#0A1D3E; --navy-soft:#3A4A69;
+    --gold:#D2A142; --gold-deep:#A87C28;
+    --line:rgba(10,29,62,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .site-header {
+    display: flex;
+    justify-content: center;
+    padding: 1.75rem 1.25rem;
+  }
+
+  .site-header a { display: inline-block; line-height: 0; }
+
+  .site-header img {
+    height: 56px;
+    width: auto;
+    display: block;
+  }
+
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0.5rem 1.25rem 3rem;
+  }
+
+  .intro {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .greeting {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(1.6rem, 6vw, 2.1rem);
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .intro p {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .intro p:last-child { margin-bottom: 0; }
+
+  .intro-soft { color: var(--navy-soft); }
+  .intro-strong { color: var(--navy); }
+
+  .rule {
+    border: none;
+    border-top: 1px solid var(--gold);
+    width: 44px;
+    margin: 2.25rem auto;
+  }
+
+  .links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .link-card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1.15rem 1.25rem;
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .link-card:hover,
+  .link-card:focus-visible {
+    border-color: var(--gold);
+  }
+
+  .link-card-title {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+
+  .link-card-sub {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--navy-soft);
+  }
+
+  .socials {
+    display: flex;
+    justify-content: center;
+    gap: 1.75rem;
+  }
+
+  .socials a {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .socials a:hover,
+  .socials a:focus-visible {
+    color: var(--gold-deep);
+  }
+
+  @media (min-width: 640px) {
+    .site-header { padding: 2.25rem 1.25rem; }
+    main { padding: 1rem 1.25rem 4rem; }
+    .site-header img { height: 64px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" aria-label="Mon Élevage home">
+    <img src="/images/mon_elevage_icon_light_text.svg" alt="Mon Élevage">
+  </a>
+</header>
+
+<main>
+  <div class="intro">
+    <h1 class="greeting">Hi, I'm Janet!</h1>
+    <p class="intro-soft">I served wine at altitude for two decades, then on the ground. Now I build the tech that runs tastings.</p>
+    <p class="intro-strong">I run blind tastings and talk about the psychology behind what we taste.</p>
+  </div>
+
+  <hr class="rule">
+
+  <div class="links-list">
+    <a class="link-card" href="/blind-tasting-kit">
+      <span class="link-card-title">Get the blind tasting kit</span>
+      <span class="link-card-sub">Free. How to run one at home, including the prompt I use to arrange the flights.</span>
+    </a>
+
+    <a class="link-card" href="https://champagne-tasting-demo.netlify.app/" target="_blank" rel="noopener">
+      <span class="link-card-title">Try the Tasting Companion</span>
+      <span class="link-card-sub">A live demo from a Champagne tasting. Score a few wines and watch the leaderboard move.</span>
+    </a>
+
+    <a class="link-card" href="/private-tasting">
+      <span class="link-card-title">Book a private tasting</span>
+      <span class="link-card-sub">Blind tastings for dinners, birthdays, and groups who want a night with a result.</span>
+    </a>
+
+    <a class="link-card" href="https://monelevagesg.com/wine-system.html">
+      <span class="link-card-title">Mon Élevage for venues</span>
+      <span class="link-card-sub">Wine inventory and digital list systems for restaurants and bars.</span>
+    </a>
+  </div>
+
+  <hr class="rule">
+
+  <div class="socials">
+    <a href="https://www.tiktok.com/@janetonwine" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://www.instagram.com/mon.elevage" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</main>
+
+</body>
+</html>

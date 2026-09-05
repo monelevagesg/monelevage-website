@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a private blind tasting | Mon Élevage</title>
+<meta name="description" content="Private blind wine tastings in Singapore for dinners, birthdays, and group events.">
+<meta property="og:title" content="Book a private blind tasting | Mon Élevage">
+<meta property="og:description" content="Private blind wine tastings in Singapore for dinners, birthdays, and group events.">
+<meta property="og:url" content="https://monelevagesg.com/private-tasting">
+<meta property="og:image" content="https://monelevagesg.com/favicon.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://monelevagesg.com/private-tasting">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:#FAF7F2; --paper-deep:#F2EDE5;
+    --navy:#0A1D3E; --navy-soft:#3A4A69;
+    --gold:#D2A142; --gold-deep:#A87C28;
+    --line:rgba(10,29,62,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .site-header {
+    display: flex;
+    justify-content: center;
+    padding: 1.75rem 1.25rem;
+  }
+
+  .site-header a { display: inline-block; line-height: 0; }
+
+  .site-header img {
+    height: 56px;
+    width: auto;
+    display: block;
+  }
+
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0.5rem 1.25rem 3rem;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--navy);
+    font-size: clamp(2rem, 8vw, 2.75rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .eyebrow {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  p { margin-bottom: 1.1rem; }
+
+  .form-label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-label .optional {
+    font-weight: 400;
+    color: var(--navy-soft);
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .tasting-form input,
+  .tasting-form textarea {
+    display: block;
+    width: 100%;
+    background: #fff;
+    color: var(--navy);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 0.9rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+  }
+
+  .tasting-form input::placeholder,
+  .tasting-form textarea::placeholder {
+    color: var(--navy-soft);
+    opacity: 0.7;
+  }
+
+  .tasting-form input:focus,
+  .tasting-form textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+
+  .tasting-form textarea {
+    resize: vertical;
+  }
+
+  .tasting-form button {
+    display: block;
+    width: 100%;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 0.95rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-top: 0.5rem;
+  }
+
+  .tasting-form button:hover { background: var(--gold-deep); }
+  .tasting-form button:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
+  .tasting-form button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .form-note {
+    font-size: 0.8rem;
+    color: var(--navy-soft);
+    margin-top: 1rem;
+  }
+
+  .success-box {
+    display: none;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 1.75rem 1.5rem;
+  }
+
+  .success-box.visible { display: block; }
+
+  .success-box h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(1.4rem, 5vw, 1.75rem);
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+
+  .success-box p { margin-bottom: 0; color: var(--navy-soft); }
+
+  @media (min-width: 640px) {
+    .site-header { padding: 2.25rem 1.25rem; }
+    main { padding: 1rem 1.25rem 4rem; }
+    .site-header img { height: 64px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" aria-label="Mon Élevage home">
+    <img src="/images/mon_elevage_icon_light_text.svg" alt="Mon Élevage">
+  </a>
+</header>
+
+<main>
+  <p class="eyebrow">Private tastings</p>
+  <h1>Book a blind tasting</h1>
+
+  <p>Blind tastings for dinners, birthdays, team nights, and any group that wants an evening with a result rather than a wine list read out loud.</p>
+
+  <p>Tell me roughly what you have in mind and I'll come back to you.</p>
+
+  <form class="tasting-form" id="tasting-form" action="https://formspree.io/f/xzdyvkjj" method="POST">
+    <input type="hidden" name="_subject" value="Private tasting enquiry">
+
+    <div class="form-group">
+      <label class="form-label" for="name">Name</label>
+      <input type="text" id="name" name="name" required autocomplete="name">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="email">Email</label>
+      <input type="email" id="email" name="email" required autocomplete="email">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="whatsapp">WhatsApp number <span class="optional">(optional)</span></label>
+      <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="when">Roughly when <span class="optional">(optional)</span></label>
+      <input type="text" id="when" name="when" placeholder="early March, or not sure yet">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="guests">How many people <span class="optional">(optional)</span></label>
+      <input type="text" id="guests" name="guests">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="notes">Anything else <span class="optional">(optional)</span></label>
+      <textarea id="notes" name="notes" rows="4"></textarea>
+    </div>
+
+    <button type="submit" id="tasting-submit">Send enquiry</button>
+    <p class="form-note" id="tasting-error" style="display: none">Something went wrong. Please try again.</p>
+  </form>
+
+  <div class="success-box" id="tasting-success" role="alert" aria-live="polite">
+    <h2>Enquiry sent.</h2>
+    <p>Thanks — I've got it, and I'll be in touch.</p>
+  </div>
+</main>
+
+<script>
+  (function () {
+    var form = document.getElementById('tasting-form');
+    if (!form) return;
+    var button = document.getElementById('tasting-submit');
+    var defaultLabel = button.textContent;
+    var errorEl = document.getElementById('tasting-error');
+    var successEl = document.getElementById('tasting-success');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      button.disabled = true;
+      button.textContent = 'Sending...';
+      if (errorEl) errorEl.style.display = 'none';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (res) {
+        if (res.ok) {
+          form.style.display = 'none';
+          successEl.classList.add('visible');
+        } else {
+          throw new Error('Submission failed');
+        }
+      }).catch(function () {
+        button.disabled = false;
+        button.textContent = defaultLabel;
+        if (errorEl) errorEl.style.display = 'block';
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
