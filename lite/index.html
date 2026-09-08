@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tasting Companion Lite | Mon Élevage</title>
+<meta name="description" content="A blind tasting scoring tool for one evening. Your guests score from their phones, the results are counted for you, and you reveal the winner with a PIN.">
+<link rel="icon" href="/mon_elevage_icon_light_notext.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f090c;
+    --text:#f2e4e8;
+    --muted:#6b6b6b;
+    --accent:#a84d63;
+    --accent-hover:#7a2d44;
+    --border:rgba(242,228,232,0.08);
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    font-size:16px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:1.1}
+
+  a{color:var(--accent);text-decoration:none}
+  a:hover{color:var(--accent-hover)}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  .wrap{max-width:640px;margin:0 auto;padding:0 1.6rem}
+
+  /* header */
+  header{padding:2.2rem 0;border-bottom:1px solid var(--border)}
+  header img{height:52px;display:block}
+
+  /* hero */
+  .hero{padding:5rem 0 4rem}
+  .hero h1{font-size:clamp(2.6rem,7vw,4rem);margin-bottom:1.6rem}
+  .hero p{font-size:1.05rem;color:var(--muted);max-width:34em}
+  .hero p + p{margin-top:1.1rem}
+
+  /* sections */
+  section{padding:3.5rem 0;border-top:1px solid var(--border)}
+  section h2{font-size:2rem;margin-bottom:1.8rem}
+
+  /* steps */
+  ol.steps{list-style:none;counter-reset:s}
+  ol.steps li{
+    counter-increment:s;
+    position:relative;
+    padding-left:3rem;
+    padding-bottom:1.6rem;
+  }
+  ol.steps li:last-child{padding-bottom:0}
+  ol.steps li::before{
+    content:counter(s);
+    position:absolute;
+    left:0;top:0;
+    width:1.9rem;height:1.9rem;
+    border:1px solid rgba(168,77,99,0.4);
+    color:var(--accent);
+    font-family:'Cormorant Garamond',serif;
+    font-size:0.95rem;
+    display:flex;align-items:center;justify-content:center;
+  }
+  ol.steps strong{font-weight:500;color:var(--text);display:block}
+  ol.steps span{color:var(--muted);font-size:0.95rem}
+
+  /* price */
+  .tiers{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+  .tier{background:var(--bg);padding:1.8rem 1.5rem}
+  .tier .amount{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--accent);line-height:1;display:block}
+  .tier .what{color:var(--muted);font-size:0.9rem;margin-top:0.5rem;display:block}
+  .price-note{color:var(--muted);font-size:0.9rem;margin-top:1.4rem}
+
+  /* demo callout */
+  .demo{border:1px solid var(--border);padding:1.8rem 1.5rem}
+  .demo p{color:var(--muted);font-size:0.95rem;margin-bottom:1rem}
+
+  /* form */
+  form{display:flex;flex-direction:column;gap:1.5rem}
+  .field{display:flex;flex-direction:column;gap:0.5rem}
+  .field label{font-size:0.85rem;color:var(--text);font-weight:400}
+  .field .hint{font-size:0.82rem;color:var(--muted)}
+  input,select,textarea{
+    background:rgba(242,228,232,0.03);
+    border:1px solid rgba(242,228,232,0.12);
+    border-radius:0;
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    font-size:0.95rem;
+    padding:0.85rem 1rem;
+    width:100%;
+    outline:none;
+    -webkit-appearance:none;
+    appearance:none;
+  }
+  input::placeholder,textarea::placeholder{color:rgba(242,228,232,0.25)}
+  input:focus,select:focus,textarea:focus{border-color:var(--accent);background:rgba(168,77,99,0.05)}
+  select option{background:#1a0d14;color:var(--text)}
+  textarea{resize:vertical;min-height:90px}
+
+  button{
+    align-self:flex-start;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    border-radius:0;
+    font-family:'Inter',sans-serif;
+    font-size:0.9rem;
+    font-weight:400;
+    padding:0.9rem 2rem;
+    cursor:pointer;
+  }
+  button:hover{background:var(--accent-hover)}
+  button:disabled{opacity:0.6;cursor:default}
+
+  .after{color:var(--muted);font-size:0.9rem;margin-top:1.6rem}
+
+  /* footer */
+  footer{
+    border-top:1px solid var(--border);
+    padding:2.2rem 0 3rem;
+    color:var(--muted);
+    font-size:0.85rem;
+  }
+  footer p + p{margin-top:0.4rem}
+
+  @media (max-width:520px){
+    .tiers{grid-template-columns:1fr}
+    button{align-self:stretch;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="https://monelevagesg.com/" aria-label="Mon Élevage home">
+      <img src="https://monelevagesg.com/images/mon_elevage_icon_light_text.svg" alt="Mon Élevage">
+    </a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <h1>You host the tasting.<br>It does the counting.</h1>
+    <p>The Tasting Companion Lite is a scoring tool for one evening. Your guests open a link on their own phones, score each wine as you pour, and the totals add themselves up.</p>
+    <p>No app to download. No spreadsheet. No sitting in the kitchen with a pile of paper while everyone else drinks.</p>
+  </div>
+
+  <section>
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li>
+        <strong>You set it up</strong>
+        <span>Add your wines in the order you're pouring them. Takes about ten minutes. Not sure what order to pour in? My <a href="https://monelevagesg.com/blind-tasting-kit/">free blind tasting guide</a> has a prompt that works it out for you.</span>
+      </li>
+      <li>
+        <strong>Your guests join from a link</strong>
+        <span>They put in their name and start scoring. Nothing to install.</span>
+      </li>
+      <li>
+        <strong>You close the scoring when you're ready</strong>
+        <span>Guests can't see the results until you decide it's time.</span>
+      </li>
+      <li>
+        <strong>You read out the PIN</strong>
+        <span>The room sees the ranking, and every score behind it.</span>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>What it costs</h2>
+    <div class="tiers">
+      <div class="tier">
+        <span class="amount">SGD 19.90</span>
+        <span class="what">Up to 10 wines</span>
+      </div>
+      <div class="tier">
+        <span class="amount">SGD 29.90</span>
+        <span class="what">11 to 20 wines</span>
+      </div>
+    </div>
+    <p class="price-note">One tasting, one payment. There's no subscription and nothing renews.</p>
+  </section>
+
+  <section>
+    <h2>See it first</h2>
+    <div class="demo">
+      <p>The demo runs the whole thing in about a minute. Set up a tasting, score a wine the way your guests would, then reveal the results.</p>
+      <a href="https://ttc-lite-demo.netlify.app/">Try the demo</a>
+    </div>
+  </section>
+
+  <section id="order">
+    <h2>Order one</h2>
+    <form id="orderForm" action="https://formspree.io/f/xzdyvkjj" method="POST">
+      <input type="hidden" name="_subject" value="Tasting Companion Lite purchase">
+
+      <div class="field">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <span class="hint">This is where the invoice and the setup code go.</span>
+      </div>
+
+      <div class="field">
+        <label for="whatsapp">WhatsApp number</label>
+        <input type="tel" id="whatsapp" name="whatsapp" placeholder="+65">
+        <span class="hint">Optional. Quicker than email if your tasting is soon.</span>
+      </div>
+
+      <div class="field">
+        <label for="wines">How many wines</label>
+        <select id="wines" name="wines" required>
+          <option value="" disabled selected>Choose one</option>
+          <option value="Up to 10 wines, SGD 19.90">Up to 10 wines, SGD 19.90</option>
+          <option value="11 to 20 wines, SGD 29.90">11 to 20 wines, SGD 29.90</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="date">Date of your tasting</label>
+        <input type="date" id="date" name="date">
+        <span class="hint">Optional, but it helps me know how quickly you need it.</span>
+      </div>
+
+      <div class="field">
+        <label for="notes">Anything else</label>
+        <textarea id="notes" name="notes"></textarea>
+        <span class="hint">Optional.</span>
+      </div>
+
+      <button type="submit">Send my order</button>
+    </form>
+
+    <p class="after" id="afterNote">Here's what happens next. I reply with an invoice and a PayNow QR code. Once the payment clears, I send you a setup code and a link to set up your wines. Everything is done by hand at the moment, so allow a day.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Questions or feedback? <a href="mailto:hello@monelevagesg.com">hello@monelevagesg.com</a></p>
+    <p>&copy; 2026 <a href="https://monelevagesg.com" target="_blank" rel="noopener">Mon Élevage</a>. Singapore. &nbsp;&middot;&nbsp; <a href="https://monelevagesg.com/privacy.html" target="_blank" rel="noopener">Privacy</a></p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('orderForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    var form = e.target;
+    var btn = form.querySelector('button');
+    var original = btn.textContent;
+
+    btn.disabled = true;
+    btn.textContent = 'Sending';
+
+    try {
+      var res = await fetch('https://formspree.io/f/xzdyvkjj', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.reset();
+        btn.textContent = 'Order sent';
+        document.getElementById('afterNote').textContent =
+          'Got it. I reply with an invoice and a PayNow QR code. Once the payment clears, I send you a setup code and a link to set up your wines. Everything is done by hand at the moment, so allow a day.';
+      } else {
+        btn.disabled = false;
+        btn.textContent = original;
+        document.getElementById('afterNote').textContent =
+          'That did not send. Email hello@monelevagesg.com with your name, how many wines, and the date, and I will pick it up from there.';
+      }
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = original;
+      document.getElementById('afterNote').textContent =
+        'That did not send. Email hello@monelevagesg.com with your name, how many wines, and the date, and I will pick it up from there.';
+    }
+  });
+</script>
+
+</body>
+</html>
