@@ -11,11 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ─── EVENT CONFIG ───────────────────────────────────────────
-       Edit this list whenever events change.
-       Format: { label: "Display name", value: "internal-id" }
-    ─────────────────────────────────────────────────────────── */
-
     :root {
       --burgundy-deep: #4a1b2e;
       --burgundy-mid:  #7a2d44;
@@ -100,11 +95,6 @@
       color: var(--gray);
       line-height: 1.7;
       max-width: 480px;
-    }
-
-    /* ─── EVENT SELECT ─── */
-    .event-block {
-      margin-bottom: 2.5rem;
     }
 
     /* ─── FORM CHROME ─── */
@@ -431,17 +421,6 @@
       </div>
     </div>
 
-    <!-- EVENT SELECT -->
-    <div class="event-block">
-      <div class="form-group">
-        <label class="form-label" for="event-select">Which event are you attending?</label>
-        <select id="event-select" name="event" required>
-          <option value="" disabled selected>Select an event</option>
-          <!-- events are populated by JS from the config below -->
-        </select>
-      </div>
-    </div>
-
     <hr class="section-divider">
 
     <!-- WINES -->
@@ -478,15 +457,6 @@
 </div>
 
 <script>
-  /* ================================================================
-     EVENT CONFIG
-     Edit this array to update the event dropdown.
-     Each entry: { label: "Display name", value: "internal-id" }
-     ================================================================ */
-  const EVENTS = [
-    { label: "24 Oct | 7 Villages of Burgundy", value: "7-villages-24-oct" },
-  ];
-
   /* ================================================================
      WINE CARD TEMPLATE
      ================================================================ */
@@ -596,19 +566,6 @@
   }
 
   /* ================================================================
-     POPULATE EVENT DROPDOWN
-     ================================================================ */
-  function populateEvents() {
-    const select = document.getElementById('event-select');
-    EVENTS.forEach(ev => {
-      const opt = document.createElement('option');
-      opt.value = ev.value;
-      opt.textContent = ev.label;
-      select.appendChild(opt);
-    });
-  }
-
-  /* ================================================================
      FORM SUBMISSION
      ================================================================ */
   async function handleSubmit(e) {
@@ -681,7 +638,6 @@
   /* ================================================================
      INIT
      ================================================================ */
-  populateEvents();
   addWineCard(); // start with one card
 
   document.getElementById('wineForm').addEventListener('submit', handleSubmit);
